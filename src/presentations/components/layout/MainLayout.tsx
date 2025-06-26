@@ -11,7 +11,7 @@ const MobileLayout = ({ children }: MobileLayoutProps) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
-    <div className="relative h-screen bg-white overflow-hidden">
+    <div className="relative bg-gray-extraLight  h-screen flex flex-col overflow-hidden">
       {/* Navbar */}
       <Header setDrawerOpen={setDrawerOpen} />
 
@@ -26,7 +26,7 @@ const MobileLayout = ({ children }: MobileLayoutProps) => {
       {/* Drawer lateral (80% de ancho) */}
       <LateralDrawer setDrawerOpen={setDrawerOpen} drawerOpen={drawerOpen} />
 
-      <main className="mt-14 p-4 h-screen px-5 py-8 bg-gray-extraLight">
+      <main className="mt-14 flex-1 flex flex-col px-5 py-8 overflow-hidden">
         {children}
       </main>
     </div>
