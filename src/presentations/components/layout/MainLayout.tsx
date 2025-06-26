@@ -26,7 +26,7 @@ const MobileLayout = ({ children }: MobileLayoutProps) => {
       {/* Drawer lateral (80% de ancho) */}
       <LateralDrawer setDrawerOpen={setDrawerOpen} drawerOpen={drawerOpen} />
 
-      <main className="mt-14 p-4 h-screen px-5 py-8 bg-[#FAFAFA] ">
+      <main className="mt-14 p-4 h-screen px-5 py-8 bg-gray-extraLight">
         {children}
       </main>
     </div>

@@ -17,14 +17,14 @@ const PeriodSelector = (props: PeriodSelectorProps) => {
         <span
           className={`text-sm leading-4 ${
             selectedPeriod === "DAILY" ? "font-semibold" : "font-normal"
-          } text-[#565656] font-sans`}
+          } text-textGray font-sans`}
         >
           Diario
         </span>
         <div
           className={`w-2 h-2  ${
             selectedPeriod === "DAILY" ? "" : "hidden"
-          } rounded-full bg-[#3564FD]`}
+          } rounded-full bg-blue`}
         />
       </div>
 
@@ -35,14 +35,14 @@ const PeriodSelector = (props: PeriodSelectorProps) => {
         <span
           className={`text-sm leading-4 ${
             selectedPeriod === "WEEKLY" ? "font-semibold" : "font-normal"
-          }  text-[#565656] font-sans`}
+          }  text-textGray font-sans`}
         >
           Semanal
         </span>
         <div
           className={`w-2 h-2  ${
             selectedPeriod === "WEEKLY" ? "" : "hidden"
-          } rounded-full bg-[#3564FD]`}
+          } rounded-full bg-blue`}
         />
       </div>
 
@@ -53,14 +53,14 @@ const PeriodSelector = (props: PeriodSelectorProps) => {
         <span
           className={`text-sm leading-4 ${
             selectedPeriod === "MONTHLY" ? "font-semibold" : "font-normal"
-          }  text-[#565656] font-sans`}
+          }  text-textGray font-sans`}
         >
           Mensual
         </span>
         <div
           className={`w-2 h-2  ${
             selectedPeriod === "MONTHLY" ? "" : "hidden"
-          } rounded-full bg-[#3564FD]`}
+          } rounded-full bg-blue`}
         />
       </div>
     </div>

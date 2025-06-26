@@ -19,7 +19,7 @@ const LinkWithIcon = (props: LinkWithIconProps) => {
       {icon}
 
       <a href={path}>
-        <span className="font-normal font-sans text-sm text-[#022A9A]">
+        <span className="font-normal font-sans text-sm text-primaryBrand">
           {children}
         </span>
       </a>

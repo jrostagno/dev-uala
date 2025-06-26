@@ -12,7 +12,7 @@ const HeaderTitle = (props: HeaderTitleProps) => {
   return (
     <h2
       className={clsx(
-        "text-base px-4 pb-4 text-[#3A3A3A] leading-4 font-semibold font-sans",
+        "text-base px-4 pb-4 text-textPrimary leading-4 font-semibold font-sans",
         className
       )}
     >
