@@ -1,20 +1,19 @@
 import clsx from "clsx";
-import type { ReactNode } from "react";
+import type { HTMLAttributes, ReactNode } from "react";
 
-interface HeaderTitleProps {
+interface HeaderTitleProps extends HTMLAttributes<HTMLHeadingElement> {
   children: ReactNode;
   className?: string;
 }
 
-const HeaderTitle = (props: HeaderTitleProps) => {
-  const { children, className = "" } = props;
-
+const HeaderTitle = ({ children, className, ...props }: HeaderTitleProps) => {
   return (
     <h2
       className={clsx(
-        "text-base px-4 pb-4 text-textPrimary leading-4 font-semibold font-sans",
+        "text-base  text-textPrimary leading-4 font-semibold font-sans",
         className
       )}
+      {...props}
     >
       {children}
     </h2>

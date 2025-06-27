@@ -13,7 +13,7 @@ const PaymentsBanner = () => {
 
   return (
     <div className="flex flex-col py-4 border">
-      <HeaderTitle>Tus cobros</HeaderTitle>
+      <HeaderTitle className="px-4 pb-4">Tus cobros</HeaderTitle>
 
       <PeriodSelector
         selectedPeriod={selectedPeriod}
@@ -22,7 +22,7 @@ const PaymentsBanner = () => {
 
       <MainNumber value={25000} />
 
-      <LinkWithIcon icon={<SvgMetricasIcon />} path="">
+      <LinkWithIcon icon={<SvgMetricasIcon />} href="">
         ver metricas
       </LinkWithIcon>
     </div>

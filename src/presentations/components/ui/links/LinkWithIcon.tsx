@@ -1,25 +1,28 @@
 import clsx from "clsx";
 
-import type { JSX, ReactNode } from "react";
+import type { AnchorHTMLAttributes, JSX, ReactNode } from "react";
 
-interface LinkWithIconProps {
+interface LinkWithIconProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   children: ReactNode;
   className?: string;
   icon?: JSX.Element;
-  path: string;
 }
 
-const LinkWithIcon = (props: LinkWithIconProps) => {
-  const { icon, children, className = "", path } = props;
-
+const LinkWithIcon = ({
+  children,
+  icon,
+  className,
+  href,
+  ...rest
+}: LinkWithIconProps) => {
   return (
     <div
       className={clsx("flex items-center pt-4 justify-center gap-1", className)}
     >
       {icon}
 
-      <a href={path}>
-        <span className="font-normal font-sans text-sm text-primaryBrand">
+      <a href={href} {...rest}>
+        <span className="font-sans text-sm font-normal text-primaryBrand">
           {children}
         </span>
       </a>
