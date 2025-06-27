@@ -10,6 +10,10 @@ import path from "node:path";
 
 export default defineConfig({
   plugins: [react()],
+  server: {
+    allowedHosts: [".ngrok-free.app"], // permite cualquier subdominio de ngrok
+    host: true, // importante para exponer en LAN/ngrok
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

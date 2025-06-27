@@ -10,6 +10,7 @@ export default {
       },
       colors: {
         primaryBrand: "#022A9A",
+        primartBrandLight: "#E0EDFF",
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
@@ -42,7 +43,7 @@ export default {
           foreground: "hsl(var(--popover-foreground))",
         },
         primary: {
-          DEFAULT: "hsl(var(--primary))",
+          DEFAULT: "#022A9A",
           foreground: "hsl(var(--primary-foreground))",
         },
         muted: {

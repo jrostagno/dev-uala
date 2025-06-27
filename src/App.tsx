@@ -1,15 +1,13 @@
 import "./App.css";
 import MobileLayout from "./presentations/components/layout/MainLayout";
 
-import PaymentsBanner from "./presentations/components/payments/PaymentsBanner";
-import TransactionHistory from "./presentations/components/transactions/TransactionHistory";
+import HomeScreen from "./presentations/screens/HomeScreen";
 
 function App() {
   return (
     <>
       <MobileLayout>
-        <PaymentsBanner />
-        <TransactionHistory />
+        <HomeScreen />
       </MobileLayout>
     </>
   );
