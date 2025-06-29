@@ -2,6 +2,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import SvgCloseIcon from "@/icons/icon-close";
 import SvgHomeIcon from "@/icons/icon-home";
 import SvgMetricsIcon from "@/icons/icon-metrics";
+import { useTransition } from "react";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Spinner from "../ui/Loaders/Spinner";
 
 interface LateralDrawerProps {
   setDrawerOpen: (value: boolean) => void;
@@ -9,6 +13,27 @@ interface LateralDrawerProps {
 }
 const LateralDrawer = (props: LateralDrawerProps) => {
   const { setDrawerOpen, drawerOpen } = props;
+
+  const navigate = useNavigate();
+
+  // const handleNavigate = (path: string) => {
+  //   setDrawerOpen(false);
+  //   setTimeout(() => {
+  //     navigate(path);
+  //   }, 300); // 300ms para coincidir con tu animación (duration-300)
+  // };
+
+  const [isPending, startTransition] = useTransition();
+
+  const handleNavigate = (path: string) => {
+    setDrawerOpen(false); // Cierra el drawer
+
+    // Luego, hace la navegación como transición
+    startTransition(() => {
+      navigate(path);
+    });
+  };
+
   return (
     <div
       className={`
@@ -28,7 +53,7 @@ const LateralDrawer = (props: LateralDrawerProps) => {
         </button>
       </div>
 
-      <nav className="mt-6 space-y-4 text-lg">
+      <nav className="flex flex-col gap-4 mt-6 space-y-4 text-lg">
         <div className="flex items-center gap-4">
           <Avatar>
             <AvatarImage src="https://github.com/shadcn.png" />
@@ -37,21 +62,30 @@ const LateralDrawer = (props: LateralDrawerProps) => {
 
           <h2 className="text-sm font-normal text-textPrimary">John Doe </h2>
         </div>
-        <a href="#" className="block text-gray-800">
+
+        <button
+          onClick={() => handleNavigate("/")}
+          className="text-primaryBrand"
+        >
           <div className="flex items-center gap-3">
             <SvgHomeIcon />
             <h2 className="text-sm font-normal text-textPrimary">Home</h2>
           </div>
-        </a>
-        <a href="#" className="block text-gray-800 ">
+        </button>
+
+        <button
+          onClick={() => handleNavigate("/metrics")}
+          className="text-primaryBrand"
+        >
           <div className="flex items-center gap-3">
             <SvgMetricsIcon className="text-red-300" />
             <h2 className="text-sm font-normal text-textPrimary">Métricas</h2>
           </div>
-        </a>
+        </button>
 
-        <a
-          href="#"
+        <Link
+          onClick={() => setDrawerOpen(false)}
+          to="/logout"
           className="fixed transform -translate-x-1/2 bottom-8 left-1/2 text-primaryBrand"
         >
           <div className="flex items-center gap-3">
@@ -59,8 +93,13 @@ const LateralDrawer = (props: LateralDrawerProps) => {
               Cerrar sesión
             </h2>
           </div>
-        </a>
+        </Link>
       </nav>
+      {isPending && (
+        <div className="absolute inset-0 z-50 flex items-center justify-center bg-white bg-opacity-70">
+          <Spinner />
+        </div>
+      )}
     </div>
   );
 };

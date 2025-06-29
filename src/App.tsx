@@ -1,14 +1,23 @@
 import "./App.css";
 import MobileLayout from "./presentations/components/layout/MainLayout";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+// App.tsx
 
 import HomeScreen from "./presentations/screens/HomeScreen";
+import MetricsScreen from "./presentations/screens/MetricsScreen";
 
 function App() {
   return (
     <>
-      <MobileLayout>
-        <HomeScreen />
-      </MobileLayout>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<MobileLayout />}>
+            <Route index element={<HomeScreen />} />
+            <Route path="metrics" element={<MetricsScreen />} />
+            {/* Podés seguir agregando más rutas */}
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

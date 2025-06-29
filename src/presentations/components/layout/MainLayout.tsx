@@ -1,19 +1,16 @@
-import { useState, type ReactNode } from "react";
-
+import { useState } from "react";
+import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import LateralDrawer from "./LateralDrawer";
 
-interface MobileLayoutProps {
-  children: ReactNode;
-}
-
-const MobileLayout = ({ children }: MobileLayoutProps) => {
+const MobileLayout = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
     <div className="relative flex flex-col h-screen overflow-hidden bg-gray-extraLight">
       {/* Navbar */}
       <Header setDrawerOpen={setDrawerOpen} />
+
       {/* Overlay oscuro */}
       {drawerOpen && (
         <div
@@ -26,7 +23,7 @@ const MobileLayout = ({ children }: MobileLayoutProps) => {
       <LateralDrawer setDrawerOpen={setDrawerOpen} drawerOpen={drawerOpen} />
 
       <main className="flex flex-col flex-1 px-5 pt-8 overflow-hidden mt-14">
-        {children}
+        <Outlet />
       </main>
     </div>
   );

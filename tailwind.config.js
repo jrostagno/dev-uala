@@ -78,6 +78,16 @@ export default {
         safe: "env(safe-area-inset-top)",
         content: "4.5rem",
       },
+
+      keyframes: {
+        spinX: {
+          "0%": { transform: "rotateX(0deg)" },
+          "100%": { transform: "rotateX(360deg)" },
+        },
+      },
+      animation: {
+        spinX: "spinX 1s linear infinite",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
