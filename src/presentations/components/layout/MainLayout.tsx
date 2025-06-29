@@ -14,11 +14,10 @@ const MobileLayout = ({ children }: MobileLayoutProps) => {
     <div className="relative flex flex-col h-screen overflow-hidden bg-gray-extraLight">
       {/* Navbar */}
       <Header setDrawerOpen={setDrawerOpen} />
-
       {/* Overlay oscuro */}
       {drawerOpen && (
         <div
-          className="fixed inset-0 z-40 bg-black bg-opacity-40"
+          className="fixed inset-0 z-50 bg-black bg-opacity-40"
           onClick={() => setDrawerOpen(false)}
         />
       )}

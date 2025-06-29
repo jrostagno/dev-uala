@@ -1,4 +1,8 @@
-import { X } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import SvgCloseIcon from "@/icons/icon-close";
+import SvgHomeIcon from "@/icons/icon-home";
+import SvgMetricsIcon from "@/icons/icon-metrics";
+
 interface LateralDrawerProps {
   setDrawerOpen: (value: boolean) => void;
   drawerOpen: boolean;
@@ -20,22 +24,41 @@ const LateralDrawer = (props: LateralDrawerProps) => {
           onClick={() => setDrawerOpen(false)}
           aria-label="Cerrar menú"
         >
-          <X size={28} />
+          <SvgCloseIcon />
         </button>
       </div>
 
       <nav className="mt-6 space-y-4 text-lg">
+        <div className="flex items-center gap-4">
+          <Avatar>
+            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarFallback>JD</AvatarFallback>
+          </Avatar>
+
+          <h2 className="text-sm font-normal text-textPrimary">John Doe </h2>
+        </div>
         <a href="#" className="block text-gray-800">
-          Inicio
+          <div className="flex items-center gap-3">
+            <SvgHomeIcon />
+            <h2 className="text-sm font-normal text-textPrimary">Home</h2>
+          </div>
         </a>
-        <a href="#" className="block text-gray-800">
-          Perfil
+        <a href="#" className="block text-gray-800 ">
+          <div className="flex items-center gap-3">
+            <SvgMetricsIcon className="text-red-300" />
+            <h2 className="text-sm font-normal text-textPrimary">Métricas</h2>
+          </div>
         </a>
-        <a href="#" className="block text-gray-800">
-          Configuración
-        </a>
-        <a href="#" className="block text-red-600">
-          Cerrar sesión
+
+        <a
+          href="#"
+          className="fixed transform -translate-x-1/2 bottom-8 left-1/2 text-primaryBrand"
+        >
+          <div className="flex items-center gap-3">
+            <h2 className="text-sm font-normal text-primaryBrand">
+              Cerrar sesión
+            </h2>
+          </div>
         </a>
       </nav>
     </div>
