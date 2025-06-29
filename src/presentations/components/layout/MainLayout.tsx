@@ -11,14 +11,14 @@ const MobileLayout = ({ children }: MobileLayoutProps) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
-    <div className="relative bg-gray-extraLight  h-screen flex flex-col overflow-hidden">
+    <div className="relative flex flex-col h-screen overflow-hidden bg-gray-extraLight">
       {/* Navbar */}
       <Header setDrawerOpen={setDrawerOpen} />
 
       {/* Overlay oscuro */}
       {drawerOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-40 z-40"
+          className="fixed inset-0 z-40 bg-black bg-opacity-40"
           onClick={() => setDrawerOpen(false)}
         />
       )}
@@ -26,7 +26,7 @@ const MobileLayout = ({ children }: MobileLayoutProps) => {
       {/* Drawer lateral (80% de ancho) */}
       <LateralDrawer setDrawerOpen={setDrawerOpen} drawerOpen={drawerOpen} />
 
-      <main className="mt-14 flex-1 flex flex-col px-5 py-8 overflow-hidden">
+      <main className="flex flex-col flex-1 px-5 pt-8 overflow-hidden mt-14">
         {children}
       </main>
     </div>

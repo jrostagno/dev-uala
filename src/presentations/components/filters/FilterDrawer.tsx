@@ -6,12 +6,18 @@ import InstallmentsFilter from "./installments/InstallmentsFilter";
 import AmountFilter from "./amount/AmountFilter";
 import PaymentMethodsFilter from "./payment-methods/PaymentMethodsFilter";
 import { ButtonPrimary } from "../ui/buttons/Buttons";
+import { useTransactionStore } from "@/store/useTransactionStore";
 
 interface FilterDrawer {
   setShowFilters: (value: boolean) => void;
 }
 
 const FilterDrawer = ({ setShowFilters }: FilterDrawer) => {
+  const { applyFilters, clearFilters } = useTransactionStore();
+
+  const handleClear = () => {
+    clearFilters(); // limpia estado global
+  };
   return (
     <div className="fixed inset-0 z-50 flex flex-col bg-white animate-slide-up">
       {/* Header del filtro */}
@@ -29,7 +35,9 @@ const FilterDrawer = ({ setShowFilters }: FilterDrawer) => {
       <div className="flex-1 px-4 py-2 overflow-y-auto">
         <div className="flex justify-between mt-8">
           <HeaderTitle>Todos los filtros</HeaderTitle>
-          <h3 className="text-base font-thin text-primaryBrand">Limpiar</h3>
+          <button onClick={handleClear}>
+            <h3 className="text-base font-thin text-primaryBrand">Limpiar</h3>
+          </button>
         </div>
 
         <DatesFilter />
@@ -47,7 +55,12 @@ const FilterDrawer = ({ setShowFilters }: FilterDrawer) => {
         className="p-4 bg-white"
         // style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
       >
-        <ButtonPrimary onClick={() => setShowFilters(false)}>
+        <ButtonPrimary
+          onClick={() => {
+            applyFilters();
+            setShowFilters(false);
+          }}
+        >
           Aplicar Filtros
         </ButtonPrimary>
       </div>

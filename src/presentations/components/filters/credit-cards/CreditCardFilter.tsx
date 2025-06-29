@@ -6,46 +6,47 @@ import {
 } from "@/components/ui/collapsible";
 import SvgCreditCardIcon from "@/icons/icon-credit-card";
 import { Switch } from "@/components/ui/switch";
-import { useState } from "react";
 
-interface CreditCardsFilter {
-  creditsCards: string[];
-}
+import SvgCloseIcon from "@/icons/icon-close";
+import { useTransactionStore } from "@/store/useTransactionStore";
+import type { CardEnum } from "@/infrastructure/interfaces/paymentsApi";
+import { CARDS_LABELS } from "@/infrastructure/mappers/paymentsMappers";
+import { useEffect, useState } from "react";
+
+const CARDS_VALUES = Object.keys(CARDS_LABELS) as CardEnum[];
 const CreditCardFilter = () => {
-  const [creditsCardsSelected, setCreditsCardsSelected] =
-    useState<CreditCardsFilter>({
-      creditsCards: [],
-    });
+  const { setFilters, filters } = useTransactionStore();
 
-  const onChange = (value: string) => {
-    const isSelected = creditsCardsSelected.creditsCards.find(
-      (install) => install === value
-    );
+  const [isOpen, setIsOpen] = useState(Boolean(filters.cards?.length));
 
-    if (isSelected) {
-      setCreditsCardsSelected({
-        ...creditsCardsSelected,
-        creditsCards: creditsCardsSelected.creditsCards.filter(
-          (el) => el !== value
-        ),
-      });
-    }
+  const cards = filters.cards ?? [];
 
-    if (!isSelected) {
-      setCreditsCardsSelected({
-        ...creditsCardsSelected,
-        creditsCards: [...creditsCardsSelected.creditsCards, value],
-      });
-    }
+  const isChecked = (value: CardEnum) => cards.includes(value);
+
+  const onToggleCard = (value: CardEnum) => {
+    const isSelected = cards.includes(value);
+    const updated = isSelected
+      ? cards.filter((el) => el !== value)
+      : [...cards, value];
+
+    setFilters({ cards: updated });
   };
 
-  const isChecked = (value: string) => {
-    if (!creditsCardsSelected.creditsCards.length) return false;
-    return creditsCardsSelected.creditsCards.includes(value);
+  const toggleAll = () => {
+    const allSelected = cards.length === CARDS_VALUES.length;
+    setFilters({ cards: allSelected ? [] : [...CARDS_VALUES] });
   };
+
+  useEffect(() => {
+    if (!filters.cards?.length) {
+      setIsOpen(false);
+    }
+  }, [filters.cards]);
+
+  const toggleCollapsible = () => setIsOpen((prev) => !prev);
 
   return (
-    <Collapsible>
+    <Collapsible open={isOpen}>
       <div className="flex items-center justify-between py-3">
         <div className="flex items-center gap-2">
           <SvgCreditCardIcon />
@@ -53,73 +54,51 @@ const CreditCardFilter = () => {
         </div>
 
         <CollapsibleTrigger>
-          <Switch id="airplane-mode" />
+          <Switch
+            id="airplane-mode"
+            onCheckedChange={toggleCollapsible}
+            checked={isOpen}
+          />
         </CollapsibleTrigger>
       </div>
       <CollapsibleContent>
         <div className="relative w-full py-4 mt-4 mb-4">
-          <ul className="flex flex-wrap gap-2 overflow-hidde">
+          <ul className="flex flex-wrap gap-2">
             <li>
               <Button
                 type="button"
                 variant={
-                  isChecked("todas") ? "chipFilterSlected" : "chipFilter"
+                  cards.length === CARDS_VALUES.length
+                    ? "chipFilterSlected"
+                    : "chipFilter"
                 }
                 className="w-auto whitespace-nowrap"
-                size={"icon"}
-                onClick={(e) => {
-                  e.preventDefault();
-                  onChange("todas");
-                }}
+                size="icon"
+                onClick={toggleAll}
               >
-                Todas
+                <div
+                  className={`flex 
+                   min-w-[53px]
+                     items-center justify-center gap-1`}
+                >
+                  <h2>Todas</h2>
+                  {cards.length === CARDS_VALUES.length && <SvgCloseIcon />}
+                </div>
               </Button>
             </li>
-            <li>
-              <Button
-                type="button"
-                variant={isChecked("visa") ? "chipFilterSlected" : "chipFilter"}
-                className="w-auto whitespace-nowrap"
-                size={"icon"}
-                onClick={(e) => {
-                  e.preventDefault();
-
-                  onChange("visa");
-                }}
-              >
-                Visa
-              </Button>
-            </li>
-            <li>
-              <Button
-                type="button"
-                variant={
-                  isChecked("mastercard") ? "chipFilterSlected" : "chipFilter"
-                }
-                className="w-auto whitespace-nowrap"
-                size={"icon"}
-                onClick={(e) => {
-                  e.preventDefault();
-                  onChange("mastercard");
-                }}
-              >
-                Mastercard
-              </Button>
-            </li>
-            <li>
-              <Button
-                type="button"
-                variant={isChecked("amex") ? "chipFilterSlected" : "chipFilter"}
-                className="w-auto whitespace-nowrap"
-                size={"icon"}
-                onClick={(e) => {
-                  e.preventDefault();
-                  onChange("amex");
-                }}
-              >
-                Amex
-              </Button>
-            </li>
+            {CARDS_VALUES.map((card) => (
+              <li key={card}>
+                <Button
+                  type="button"
+                  variant={isChecked(card) ? "chipFilterSlected" : "chipFilter"}
+                  className="w-auto capitalize whitespace-nowrap"
+                  size="icon"
+                  onClick={() => onToggleCard(card)}
+                >
+                  {CARDS_LABELS[card]}
+                </Button>
+              </li>
+            ))}
           </ul>
         </div>
       </CollapsibleContent>

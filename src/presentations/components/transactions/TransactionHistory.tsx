@@ -5,26 +5,18 @@ import TransactionListItem from "./TransactionListItem";
 import { useState } from "react";
 
 import FilterDrawer from "../filters/FilterDrawer";
-
-const transactions = [
-  { id: 1, transactionType: "venta", amount: 34343, date: "12/06/89" },
-  { id: 2, transactionType: "venta", amount: 34343, date: "12/06/89" },
-  { id: 3, transactionType: "venta", amount: 34343, date: "12/06/89" },
-  { id: 4, transactionType: "venta", amount: 34343, date: "12/06/89" },
-  { id: 5, transactionType: "venta", amount: 34343, date: "12/06/89" },
-  { id: 6, transactionType: "venta", amount: 34343, date: "12/06/89" },
-  { id: 7, transactionType: "ventaP", amount: 34343, date: "12/06/89" },
-  { id: 8, transactionType: "venta", amount: 34343, date: "12/06/89" },
-  { id: 9, transactionType: "ventaY", amount: 34343, date: "12/06/89" },
-  { id: 15, transactionType: "venta", amount: 34343, date: "12/06/89" },
-  { id: 63, transactionType: "venta", amount: 34343, date: "12/06/89" },
-  { id: 73, transactionType: "ventaPETE", amount: 34343, date: "12/06/89" },
-  { id: 83, transactionType: "venta", amount: 34343, date: "12/06/89" },
-  { id: 39, transactionType: "ventaY", amount: 34343, date: "12/06/89" },
-];
+import { useTransactionStore } from "@/store/useTransactionStore";
+import EmptyState from "../ui/EmptyState";
+import TransactionListItemSkeleton from "./TransactionListItemSkeleton";
 
 const TransactionHistory = () => {
+  const { filtered, loading, error, filters } = useTransactionStore();
   const [showFilters, setShowFilters] = useState(false);
+
+  //if (loading) return <TransactionListItemSkeleton />;
+  if (error) return <p>Error al cargar transacciones</p>;
+
+  console.log(filters);
 
   return (
     <div className="flex flex-col flex-1 min-h-0 overflow-hidden">
@@ -39,15 +31,27 @@ const TransactionHistory = () => {
         </div>
       </div>
 
+      {loading && (
+        <div className="flex flex-col w-full gap-2">
+          {new Array(10).fill(0).map((_, index) => (
+            <TransactionListItemSkeleton key={index} />
+          ))}
+        </div>
+      )}
+
+      {filtered.length === 0 && <EmptyState />}
       <ul className="flex-1 pb-12 overflow-y-auto overscroll-none">
-        {transactions.map((transaction) => (
-          <TransactionListItem
-            key={transaction.id}
-            transactionType={transaction.transactionType}
-            amount={transaction.amount}
-            date={transaction.date}
-          />
-        ))}
+        {filtered &&
+          filtered.length > 0 &&
+          filtered.map((transaction) => (
+            <TransactionListItem
+              key={transaction.id}
+              amount={transaction.amount}
+              date={transaction.createdAt}
+              paymentMethod={transaction.paymentMethod}
+              card={transaction.card}
+            />
+          ))}
       </ul>
 
       {showFilters && <FilterDrawer setShowFilters={setShowFilters} />}

@@ -6,39 +6,68 @@ import {
 import { Slider } from "@/components/ui/slider";
 import SvgAmountIcon from "@/icons/icon-amount";
 import { Switch } from "@/components/ui/switch";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useTransactionStore } from "@/store/useTransactionStore";
+import AmountBox from "./AmountBox";
+const MIN = 0;
+const MAX = 2000;
 
 const AmountFilter = () => {
-  const [range, setRange] = useState([100, 750]); // valores iniciales
+  const { setFilters, filters } = useTransactionStore();
+  const [isOpen, setIsOpen] = useState(
+    Boolean(filters.maxAmount || filters.minAmount)
+  );
+  const [range, setRange] = useState<[number, number]>([
+    filters.minAmount || 10,
+    filters.maxAmount || 2000,
+  ]);
 
-  const min = 10;
-  const max = 1000;
+  const getPercentage = (value: number) => ((value - MIN) / (MAX - MIN)) * 100;
 
-  const getPercentage = (value: number) => ((value - min) / (max - min)) * 100;
+  const onValueChange = (val: [number, number]) => {
+    setRange(val);
+
+    setFilters({
+      ...filters,
+      minAmount: val[0],
+      maxAmount: val[1],
+    });
+  };
+
+  useEffect(() => {
+    if (!filters.minAmount || !filters.maxAmount) {
+      setIsOpen(false);
+      setRange([0, 2000]);
+    }
+  }, [filters.minAmount, filters.maxAmount]);
+
+  const toggleCollapsible = () => setIsOpen((prev) => !prev);
 
   return (
     <>
-      <Collapsible>
+      <Collapsible open={isOpen}>
         <div className="flex items-center justify-between py-3">
           <div className="flex items-center gap-2">
             <SvgAmountIcon />
             <span className="text-sm font-semibold text-textDark">Monto</span>
           </div>
           <CollapsibleTrigger>
-            <Switch id="airplane-mode" />
+            <Switch
+              id="airplane-mode"
+              onCheckedChange={toggleCollapsible}
+              checked={isOpen}
+            />
           </CollapsibleTrigger>
         </div>
         <CollapsibleContent>
           <div className="relative w-full py-4 mb-4 mt-9">
             <Slider
-              defaultValue={[100, 750]}
-              min={10}
-              max={1000}
-              //step={1}
-              value={range}
-              onValueChange={(val) => setRange(val)}
+              defaultValue={[filters.minAmount || 0, filters.maxAmount || 2000]}
+              min={MIN}
+              max={MAX}
               step={1}
-              //minStepsBetweenThumbs={1}
+              value={range}
+              onValueChange={onValueChange}
             />
 
             {/* Label flotante del primer thumb */}
@@ -58,23 +87,8 @@ const AmountFilter = () => {
             </div>
 
             <div className="flex items-center justify-between mt-4">
-              <div className="flex flex-col items-center justify-center px-4 py-1 border rounded-[8px] border-primaryBrand">
-                <span className="text-[10px] font-thin text-textNeutral">
-                  Monto mínimo
-                </span>
-                <strong className="self-start text-sm font-normal text-textDark">
-                  $10
-                </strong>
-              </div>
-
-              <div className="flex flex-col items-center justify-center px-4 py-1 border rounded-[8px] border-primaryBrand">
-                <span className="text-[10px] font-thin text-textNeutral">
-                  Monto máximo
-                </span>
-                <strong className="self-start text-sm font-normal text-textDark">
-                  $1000
-                </strong>
-              </div>
+              <AmountBox label="Monto mínimo" amount={range[0]} />
+              <AmountBox label="Monto máximo" amount={range[1]} />
             </div>
           </div>
         </CollapsibleContent>

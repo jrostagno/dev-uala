@@ -23,7 +23,7 @@ const buttonVariants = cva(
         chipFilter:
           "disable:bg-gray-100 !rounded-full !border border-primaryBrand !bg-white !px-4 py-2 text-xs text-primaryBrand  focus:bg-blue-100  disabled:!bg-gray-100 disabled:text-gray-700",
         chipFilterSlected:
-          "disable:bg-gray-100 !rounded-full !border border-primaryBrand !bg-primartBrandLight !px-4 py-2 text-xs text-primaryBrand  focus:bg-blue-100  disabled:!bg-gray-100 disabled:text-gray-700",
+          "disable:bg-gray-100 !rounded-full !border border-primaryBrand !bg-primaryBrandLight !px-4 py-2 text-xs text-primaryBrand  focus:bg-blue-100  disabled:!bg-gray-100 disabled:text-gray-700",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {

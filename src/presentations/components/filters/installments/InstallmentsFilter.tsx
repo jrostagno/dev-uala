@@ -6,142 +6,97 @@ import {
 } from "@/components/ui/collapsible";
 import SvgQuotasIcon from "@/icons/icon-quotas";
 import { Switch } from "@/components/ui/switch";
-import { useState } from "react";
+import SvgCloseIcon from "@/icons/icon-close";
+import { useTransactionStore } from "@/store/useTransactionStore";
+import { useEffect, useState } from "react";
 
-interface InstallFilter {
-  install: string[];
-}
+// Opciones de cuotas disponibles
+const INSTALLMENT_OPTIONS = [1, 2, 3, 6, 12];
+
 const InstallmentsFilter = () => {
-  const [installementSelected, setInstallmentsSelected] =
-    useState<InstallFilter>({ install: [] });
+  const { setFilters, filters } = useTransactionStore();
+  const [isOpen, setIsOpen] = useState(Boolean(filters.installments?.length));
+  const installments = filters.installments ?? [];
 
-  const onInstallmentchange = (value: string) => {
-    const isInstallSelected = installementSelected.install.find(
-      (install) => install === value
-    );
+  const isChecked = (value: number) => installments.includes(value);
 
-    if (isInstallSelected) {
-      setInstallmentsSelected({
-        ...installementSelected,
-        install: installementSelected.install.filter((el) => el !== value),
-      });
-    }
+  const onToggleInstallment = (value: number) => {
+    const isSelected = installments.includes(value);
+    const updated = isSelected
+      ? installments.filter((el) => el !== value)
+      : [...installments, value];
 
-    if (!isInstallSelected) {
-      setInstallmentsSelected({
-        ...installementSelected,
-        install: [...installementSelected.install, value],
-      });
-    }
+    setFilters({ installments: updated });
   };
 
-  const isChecked = (value: string) => {
-    if (!installementSelected.install.length) return false;
-    return installementSelected.install.includes(value);
+  const toggleAll = () => {
+    const allSelected = installments.length === INSTALLMENT_OPTIONS.length;
+    setFilters({ installments: allSelected ? [] : [...INSTALLMENT_OPTIONS] });
   };
+
+  useEffect(() => {
+    if (!filters.installments?.length) {
+      setIsOpen(false);
+    }
+  }, [filters.installments]);
+
+  const toggleCollapsible = () => setIsOpen((prev) => !prev);
 
   return (
-    <Collapsible>
+    <Collapsible open={isOpen}>
       <div className="flex items-center justify-between py-3">
         <div className="flex items-center gap-2">
           <SvgQuotasIcon />
-          <span className="text-sm font-semibold text-textDark">Coutas</span>
+          <span className="text-sm font-semibold text-textDark">Cuotas</span>
         </div>
         <CollapsibleTrigger>
-          <Switch id="airplane-mode" />
+          <Switch
+            id="installments-switch"
+            onCheckedChange={toggleCollapsible}
+            checked={isOpen}
+          />
         </CollapsibleTrigger>
       </div>
+
       <CollapsibleContent>
-        <div className="relative w-full py-4 mt-4 mb-4">
-          <ul className="flex flex-wrap gap-2 overflow-hidde">
-            <li>
+        <ul className="flex flex-wrap gap-2 py-4">
+          <li>
+            <Button
+              type="button"
+              variant={
+                installments.length === INSTALLMENT_OPTIONS.length
+                  ? "chipFilterSlected"
+                  : "chipFilter"
+              }
+              className="w-auto whitespace-nowrap"
+              size="icon"
+              onClick={toggleAll}
+            >
+              <div className="flex min-w-[53px] items-center justify-center gap-1">
+                <h2>Todas</h2>
+                {installments.length === INSTALLMENT_OPTIONS.length && (
+                  <SvgCloseIcon />
+                )}
+              </div>
+            </Button>
+          </li>
+
+          {INSTALLMENT_OPTIONS.map((installment) => (
+            <li key={installment}>
               <Button
                 type="button"
                 variant={
-                  isChecked("todas") ? "chipFilterSlected" : "chipFilter"
+                  isChecked(installment) ? "chipFilterSlected" : "chipFilter"
                 }
-                className="w-auto whitespace-nowrap"
-                size={"icon"}
-                onClick={(e) => {
-                  e.preventDefault();
-                  onInstallmentchange("todas");
-                }}
+                className="w-auto capitalize whitespace-nowrap"
+                size="icon"
+                onClick={() => onToggleInstallment(installment)}
               >
-                todas
+                {installment}
               </Button>
             </li>
-            <li>
-              <Button
-                type="button"
-                variant={isChecked("1") ? "chipFilterSlected" : "chipFilter"}
-                className="w-auto whitespace-nowrap"
-                size={"icon"}
-                onClick={(e) => {
-                  e.preventDefault();
-                  onInstallmentchange("1");
-                }}
-              >
-                1
-              </Button>
-            </li>
-            <li>
-              <Button
-                type="button"
-                variant={isChecked("2") ? "chipFilterSlected" : "chipFilter"}
-                className="w-auto whitespace-nowrap"
-                size={"icon"}
-                onClick={(e) => {
-                  e.preventDefault();
-                  onInstallmentchange("2");
-                }}
-              >
-                2
-              </Button>
-            </li>
-            <li>
-              <Button
-                type="button"
-                variant={isChecked("3") ? "chipFilterSlected" : "chipFilter"}
-                className="w-auto whitespace-nowrap"
-                size={"icon"}
-                onClick={(e) => {
-                  e.preventDefault();
-                  onInstallmentchange("3");
-                }}
-              >
-                3
-              </Button>
-            </li>
-            <li>
-              <Button
-                type="button"
-                variant={isChecked("6") ? "chipFilterSlected" : "chipFilter"}
-                className="w-auto whitespace-nowrap"
-                size={"icon"}
-                onClick={(e) => {
-                  e.preventDefault();
-                  onInstallmentchange("6");
-                }}
-              >
-                6
-              </Button>
-            </li>
-            <li>
-              <Button
-                type="button"
-                variant={isChecked("12") ? "chipFilterSlected" : "chipFilter"}
-                className="w-auto whitespace-nowrap"
-                size={"icon"}
-                onClick={(e) => {
-                  e.preventDefault();
-                  onInstallmentchange("12");
-                }}
-              >
-                12
-              </Button>
-            </li>
-          </ul>
-        </div>
+          ))}
+        </ul>
       </CollapsibleContent>
     </Collapsible>
   );
