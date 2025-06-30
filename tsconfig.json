@@ -1,18 +1,17 @@
 {
   "compilerOptions": {
-    "noEmit": true,
-    "target": "ESNext", // ✅ Necesario para JSX + libs modernas
-    "module": "ESNext", // ✅ Necesario para Vite
+    "target": "ESNext",
+    "module": "ESNext",
     "moduleResolution": "bundler",
-    "types": ["vitest/globals", "@testing-library/jest-dom"],
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "noEmit": true
   },
-  "include": ["src", "src/types/vaul.d.ts", "vitest.setup.ts", "test"]
+  "include": ["src"],
+  "exclude": ["**/*.test.ts", "**/*.test.tsx", "vitest.setup.ts"]
 }

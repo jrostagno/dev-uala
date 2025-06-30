@@ -3,7 +3,7 @@ import SvgCloseIcon from "@/icons/icon-close";
 import SvgHomeIcon from "@/icons/icon-home";
 import SvgMetricsIcon from "@/icons/icon-metrics";
 import { useTransition } from "react";
-import { Link } from "react-router-dom";
+
 import { useNavigate } from "react-router-dom";
 import Spinner from "../ui/Loaders/Spinner";
 
@@ -66,7 +66,7 @@ const LateralDrawer = (props: LateralDrawerProps) => {
         </button>
 
         <button
-          onClick={() => handleNavigate("/metrics")}
+          onClick={() => handleNavigate("/metricas")}
           className="text-primaryBrand"
         >
           <div className="flex items-center gap-3">
@@ -75,17 +75,11 @@ const LateralDrawer = (props: LateralDrawerProps) => {
           </div>
         </button>
 
-        <Link
-          onClick={() => {}}
-          to="/logout"
-          className="fixed transform -translate-x-1/2 bottom-8 left-1/2 text-primaryBrand"
-        >
-          <div className="flex items-center gap-3">
-            <h2 className="text-sm font-normal text-primaryBrand">
-              Cerrar sesión
-            </h2>
-          </div>
-        </Link>
+        <div className="fixed flex items-center gap-3 transform -translate-x-1/2 bottom-8 left-1/2 text-primaryBrand">
+          <h2 className="text-sm font-normal text-primaryBrand">
+            Cerrar sesión
+          </h2>
+        </div>
       </nav>
       {isPending && (
         <div className="absolute inset-0 z-50 flex items-center justify-center bg-white bg-opacity-70">
