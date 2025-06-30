@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
+    "noEmit": true,
     "target": "ESNext", // ✅ Necesario para JSX + libs modernas
     "module": "ESNext", // ✅ Necesario para Vite
-    "moduleResolution": "Node", // ✅ Importante para que resuelva paquetes tipo `vitest`
+    "moduleResolution": "bundler",
     "types": ["vitest/globals", "@testing-library/jest-dom"],
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
@@ -13,5 +14,5 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src", "vitest.setup.ts", "test"]
+  "include": ["src", "src/types/vaul.d.ts", "vitest.setup.ts", "test"]
 }
