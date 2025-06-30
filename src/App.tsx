@@ -13,7 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MobileLayout />}>
             <Route index element={<HomeScreen />} />
-            <Route path="metrics" element={<MetricsScreen />} />
+            <Route path="metricas" element={<MetricsScreen />} />
           </Route>
         </Routes>
       </BrowserRouter>

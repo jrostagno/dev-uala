@@ -16,13 +16,12 @@ interface Filters {
   toDate?: string;
 }
 
-interface TransactionState {
+export interface TransactionState {
   transactions: Transaction[];
   filtered: Transaction[];
   filters: Filters;
   loading: boolean;
   error: string | null;
-
   fetchAll: () => Promise<void>;
   setFilters: (filters: Partial<Filters>) => void;
   applyFilters: () => void;

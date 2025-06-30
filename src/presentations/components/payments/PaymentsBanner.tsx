@@ -57,7 +57,7 @@ const PaymentsBanner = () => {
 
       {loading ? <MainNumberSkeleton /> : <MainNumber value={total} />}
 
-      <LinkWithIcon icon={<SvgMetricasIcon />} href="">
+      <LinkWithIcon icon={<SvgMetricasIcon />} href="/metricas">
         ver metricas
       </LinkWithIcon>
     </div>

@@ -4,16 +4,6 @@ import TransactionHistory from "../components/transactions/TransactionHistory";
 import { useEffect } from "react";
 
 const HomeScreen = () => {
-  // useEffect(() => {
-  //   useTransactionStore.getState().fetchAll();
-
-  //   const interval = setInterval(() => {
-  //     useTransactionStore.getState().fetchAll();
-  //   }, 60000); // cada 30s
-
-  //   return () => clearInterval(interval); // Limpieza al desmontar
-  // }, []);
-
   useEffect(() => {
     useTransactionStore.getState().fetchAll();
   }, []);

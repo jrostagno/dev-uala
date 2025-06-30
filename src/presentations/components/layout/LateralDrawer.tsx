@@ -16,19 +16,11 @@ const LateralDrawer = (props: LateralDrawerProps) => {
 
   const navigate = useNavigate();
 
-  // const handleNavigate = (path: string) => {
-  //   setDrawerOpen(false);
-  //   setTimeout(() => {
-  //     navigate(path);
-  //   }, 300); // 300ms para coincidir con tu animación (duration-300)
-  // };
-
   const [isPending, startTransition] = useTransition();
 
   const handleNavigate = (path: string) => {
-    setDrawerOpen(false); // Cierra el drawer
+    setDrawerOpen(false);
 
-    // Luego, hace la navegación como transición
     startTransition(() => {
       navigate(path);
     });
@@ -84,7 +76,7 @@ const LateralDrawer = (props: LateralDrawerProps) => {
         </button>
 
         <Link
-          onClick={() => setDrawerOpen(false)}
+          onClick={() => {}}
           to="/logout"
           className="fixed transform -translate-x-1/2 bottom-8 left-1/2 text-primaryBrand"
         >

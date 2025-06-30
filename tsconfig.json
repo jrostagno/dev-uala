@@ -1,14 +1,17 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ],
-
   "compilerOptions": {
+    "target": "ESNext", // ✅ Necesario para JSX + libs modernas
+    "module": "ESNext", // ✅ Necesario para Vite
+    "moduleResolution": "Node", // ✅ Importante para que resuelva paquetes tipo `vitest`
+    "types": ["vitest/globals", "@testing-library/jest-dom"],
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+
+    "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
     }
-  }
+  },
+  "include": ["src", "vitest.setup.ts", "test"]
 }

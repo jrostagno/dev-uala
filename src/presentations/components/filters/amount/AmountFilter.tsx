@@ -62,6 +62,7 @@ const AmountFilter = () => {
         <CollapsibleContent>
           <div className="relative w-full py-4 mt-7">
             <Slider
+              data-testid="slider"
               defaultValue={[filters.minAmount || 0, filters.maxAmount || 2000]}
               min={MIN}
               max={MAX}

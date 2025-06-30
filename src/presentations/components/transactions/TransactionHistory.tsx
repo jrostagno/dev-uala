@@ -16,7 +16,6 @@ const TransactionHistory = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [showDownloadModal, setShowDownloadModal] = useState(false);
 
-  //if (loading) return <TransactionListItemSkeleton />;
   if (error) return <p>Error al cargar transacciones</p>;
 
   console.log(filters);
@@ -29,8 +28,18 @@ const TransactionHistory = () => {
         </h3>
 
         <div className="flex items-center justify-center gap-2">
-          <SvgTransactionHistoryIcon onClick={() => setShowFilters(true)} />
-          <SvgDownloadIcon onClick={() => setShowDownloadModal(true)} />
+          <button
+            data-testid="filter-icon"
+            onClick={() => setShowFilters(true)}
+          >
+            <SvgTransactionHistoryIcon onClick={() => setShowFilters(true)} />
+          </button>
+          <button
+            data-testid="download-icon"
+            onClick={() => setShowDownloadModal(true)}
+          >
+            <SvgDownloadIcon onClick={() => setShowDownloadModal(true)} />
+          </button>
         </div>
       </div>
 

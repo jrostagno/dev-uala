@@ -1,5 +1,4 @@
 import clsx from "clsx";
-
 import type { AnchorHTMLAttributes, JSX, ReactNode } from "react";
 
 interface LinkWithIconProps extends AnchorHTMLAttributes<HTMLAnchorElement> {

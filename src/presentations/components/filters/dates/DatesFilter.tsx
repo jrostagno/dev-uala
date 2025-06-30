@@ -77,9 +77,11 @@ const DatesFilter = () => {
           <div className="self-end mr-[30px]">
             <Button
               className="mt-3 mb-3"
+              data-testid="borrar-btn"
               disabled={!date?.from && !date?.to}
               onClick={() => {
                 setDate({ from: undefined, to: undefined });
+                setFilters({ fromDate: undefined, toDate: undefined });
               }}
               variant="outline"
             >

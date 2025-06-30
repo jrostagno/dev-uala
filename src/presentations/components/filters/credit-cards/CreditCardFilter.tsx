@@ -67,6 +67,7 @@ const CreditCardFilter = () => {
             <li>
               <Button
                 type="button"
+                data-testid="todas-btn"
                 variant={
                   cards.length === CARDS_VALUES.length
                     ? "chipFilterSlected"
@@ -90,6 +91,7 @@ const CreditCardFilter = () => {
               <li key={card}>
                 <Button
                   type="button"
+                  data-testid={card}
                   variant={isChecked(card) ? "chipFilterSlected" : "chipFilter"}
                   className="w-auto capitalize whitespace-nowrap"
                   size="icon"

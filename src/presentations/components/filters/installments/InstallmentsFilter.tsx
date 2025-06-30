@@ -63,6 +63,7 @@ const InstallmentsFilter = () => {
           <li>
             <Button
               type="button"
+              data-testid="todas-btn"
               variant={
                 installments.length === INSTALLMENT_OPTIONS.length
                   ? "chipFilterSlected"
@@ -85,6 +86,7 @@ const InstallmentsFilter = () => {
             <li key={installment}>
               <Button
                 type="button"
+                data-testid={installment}
                 variant={
                   isChecked(installment) ? "chipFilterSlected" : "chipFilter"
                 }

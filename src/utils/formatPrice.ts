@@ -1,8 +1,8 @@
 export const formatPrice = (
   price: number,
   precision = 0,
-  locale = "en-US",
-  currencyCode = "USD"
+  locale = "es-AR",
+  currencyCode = "ARS"
 ): string => {
   return new Intl.NumberFormat(locale, {
     style: "currency",

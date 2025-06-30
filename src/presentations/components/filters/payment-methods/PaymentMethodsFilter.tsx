@@ -66,6 +66,7 @@ const PaymentMethodsFilter = () => {
             <li>
               <Button
                 type="button"
+                data-testid="todas-btn"
                 variant={
                   peymentMethods.length === METHOD_VALUES.length
                     ? "chipFilterSlected"
@@ -91,6 +92,7 @@ const PaymentMethodsFilter = () => {
               <li key={value}>
                 <Button
                   type="button"
+                  data-testid={value}
                   variant={
                     isChecked(value) ? "chipFilterSlected" : "chipFilter"
                   }
