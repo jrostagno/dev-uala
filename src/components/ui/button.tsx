@@ -7,19 +7,20 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[24px] text-[14px] !font-thin transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none  [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
         default:
-          "bg-primaryBrand text-primary-foreground shadow hover:bg-primary/90",
+          "bg-primaryBrand text-primary-foreground shadow hover:bg-primary/90 disabled:pointer-events-none disabled:bg-neutralMiddle",
         destructive:
           "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
         outline:
-          "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
+          "border border-input border-primaryBrand disabled:pointer-events-none disabled:text-neutralMiddle disabled:border-neutralMiddle  bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
         secondary:
           "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
+        ghost:
+          "hover:bg-accent text-base font-thin disabled:pointer-events-none disabled:text-neutralMiddle   hover:text-accent-foreground",
         chipFilter:
           "disable:bg-gray-100 !rounded-full !border border-primaryBrand !bg-white !px-4 py-2 text-xs text-primaryBrand  focus:bg-blue-100  disabled:!bg-gray-100 disabled:text-gray-700",
         chipFilterSlected:

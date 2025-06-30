@@ -47,7 +47,7 @@ const PaymentsBanner = () => {
   }, [transactions, selectedPeriod]);
 
   return (
-    <div className="flex flex-col py-4 border">
+    <div className="flex flex-col pt-4">
       <HeaderTitle className="px-4 pb-4">Tus cobros</HeaderTitle>
 
       <PeriodSelector

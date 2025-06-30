@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import LateralDrawer from "./LateralDrawer";
+import { Toaster } from "@/components/ui/sonner";
 
 const MobileLayout = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -24,6 +25,7 @@ const MobileLayout = () => {
 
       <main className="flex flex-col flex-1 px-5 pt-8 overflow-hidden mt-14">
         <Outlet />
+        <Toaster />
       </main>
     </div>
   );

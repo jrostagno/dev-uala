@@ -9,9 +9,12 @@ import { useTransactionStore } from "@/store/useTransactionStore";
 import EmptyState from "../ui/EmptyState";
 import TransactionListItemSkeleton from "./TransactionListItemSkeleton";
 
+import DownloadDialog from "../download/DownloadDialog";
+
 const TransactionHistory = () => {
   const { filtered, loading, error, filters } = useTransactionStore();
   const [showFilters, setShowFilters] = useState(false);
+  const [showDownloadModal, setShowDownloadModal] = useState(false);
 
   //if (loading) return <TransactionListItemSkeleton />;
   if (error) return <p>Error al cargar transacciones</p>;
@@ -27,7 +30,7 @@ const TransactionHistory = () => {
 
         <div className="flex items-center justify-center gap-2">
           <SvgTransactionHistoryIcon onClick={() => setShowFilters(true)} />
-          <SvgDownloadIcon />
+          <SvgDownloadIcon onClick={() => setShowDownloadModal(true)} />
         </div>
       </div>
 
@@ -40,7 +43,7 @@ const TransactionHistory = () => {
       )}
 
       {filtered.length === 0 && <EmptyState />}
-      <ul className="flex-1 pb-12 overflow-y-auto overscroll-none">
+      <ul className="flex-1 pb-12 overflow-y-auto scrollbar-hide overscroll-none">
         {filtered &&
           filtered.length > 0 &&
           filtered.map((transaction) => (
@@ -53,6 +56,11 @@ const TransactionHistory = () => {
             />
           ))}
       </ul>
+
+      <DownloadDialog
+        setShowDownloadModal={setShowDownloadModal}
+        showDownloadModal={showDownloadModal}
+      />
 
       {showFilters && <FilterDrawer setShowFilters={setShowFilters} />}
     </div>

@@ -22,8 +22,10 @@ export default {
           foreground: "hsl(var(--accent-foreground))",
         },
         textDark: "#313643",
+
         textNeutral: "#606882",
         neutralSoft: "#DEE2EC",
+        neutralMiddle: "#B7BFD3",
         textGray: "#565656",
         gray: {
           extraLight: "#FAFAFA",

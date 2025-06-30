@@ -62,7 +62,7 @@ const CreditCardFilter = () => {
         </CollapsibleTrigger>
       </div>
       <CollapsibleContent>
-        <div className="relative w-full py-4 mt-4 mb-4">
+        <div className="relative w-full py-4">
           <ul className="flex flex-wrap gap-2">
             <li>
               <Button

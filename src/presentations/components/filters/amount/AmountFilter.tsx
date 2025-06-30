@@ -35,11 +35,11 @@ const AmountFilter = () => {
   };
 
   useEffect(() => {
-    if (!filters.minAmount || !filters.maxAmount) {
+    if (Object.entries(filters).length === 0) {
       setIsOpen(false);
       setRange([0, 2000]);
     }
-  }, [filters.minAmount, filters.maxAmount]);
+  }, [filters]);
 
   const toggleCollapsible = () => setIsOpen((prev) => !prev);
 
@@ -60,7 +60,7 @@ const AmountFilter = () => {
           </CollapsibleTrigger>
         </div>
         <CollapsibleContent>
-          <div className="relative w-full py-4 mb-4 mt-9">
+          <div className="relative w-full py-4 mt-7">
             <Slider
               defaultValue={[filters.minAmount || 0, filters.maxAmount || 2000]}
               min={MIN}
@@ -72,7 +72,9 @@ const AmountFilter = () => {
 
             {/* Label flotante del primer thumb */}
             <div
-              className="absolute px-2 py-1 text-xs font-thin transform -translate-x-1/2 bg-white -top-4 text-primaryBrand"
+              className={`absolute px-2 py-1 text-xs font-thin ${
+                range[1] - range[0] < 300 ? "hidden" : ""
+              } transform -translate-x-1/2 bg-white -top-4 text-primaryBrand`}
               style={{ left: `calc(${getPercentage(range[0])}% + 10px)` }}
             >
               ${range[0]}

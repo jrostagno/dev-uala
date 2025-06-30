@@ -1,4 +1,5 @@
 import { Calendar } from "@/components/ui/calendar";
+import { es } from "date-fns/locale";
 import {
   Collapsible,
   CollapsibleContent,
@@ -9,6 +10,7 @@ import SvgCalendarIcon from "@/icons/icon-calendar";
 import { useTransactionStore } from "@/store/useTransactionStore";
 import { useEffect, useState } from "react";
 import type { DateRange } from "react-day-picker";
+import { Button } from "@/components/ui/button";
 
 const DatesFilter = () => {
   const { setFilters, filters } = useTransactionStore();
@@ -61,15 +63,29 @@ const DatesFilter = () => {
           />
         </CollapsibleTrigger>
       </div>
-      <CollapsibleContent>
-        <div className="relative flex justify-center w-full py-4 mt-4 mb-4">
+      <CollapsibleContent className="py-4">
+        <div className="relative flex flex-col items-center justify-center py-2 m-auto max-w-[280px] mt-0 mb-0 bg-white rounded-md">
           <Calendar
             mode="range"
             selected={date}
+            locale={es}
             onSelect={handleSelection}
             numberOfMonths={1}
-            className="border rounded-lg shadow-sm"
+            className="py-0"
           />
+
+          <div className="self-end mr-[30px]">
+            <Button
+              className="mt-3 mb-3"
+              disabled={!date?.from && !date?.to}
+              onClick={() => {
+                setDate({ from: undefined, to: undefined });
+              }}
+              variant="outline"
+            >
+              Borrar
+            </Button>
+          </div>
         </div>
       </CollapsibleContent>
     </Collapsible>

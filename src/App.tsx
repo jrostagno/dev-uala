@@ -14,7 +14,6 @@ function App() {
           <Route path="/" element={<MobileLayout />}>
             <Route index element={<HomeScreen />} />
             <Route path="metrics" element={<MetricsScreen />} />
-            {/* Podés seguir agregando más rutas */}
           </Route>
         </Routes>
       </BrowserRouter>
