@@ -12,7 +12,7 @@ export default defineConfig({
     setupFiles: "./vitest.setup.ts",
   },
   server: {
-    allowedHosts: [".ngrok-free.app"], // permite cualquier subdominio de ngrok
+    allowedHosts: [".ngrok-free.app"],
     host: true,
     proxy: {
       "/api/transactions": {

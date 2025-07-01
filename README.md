@@ -1,70 +1,107 @@
-# React + TypeScript + Vite
+# Ualá - Historial de Transacciones 💳
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Esta aplicación permite visualizar un historial de transacciones con filtros avanzados por fecha, monto, métodos de pago, tarjetas y cuotas. Fue desarrollada como desafío técnico utilizando tecnologías modernas de frontend.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🧑‍💻 Tecnologías utilizadas
 
-## Expanding the ESLint configuration
+- [React](https://reactjs.org/)
+- [Vite](https://vitejs.dev/)
+- [Zustand](https://zustand-demo.pmnd.rs/)
+- [Radix UI](https://www.radix-ui.com/) (Collapsible, Switch, etc.)
+- [Vitest](https://vitest.dev/) + [Testing Library](https://testing-library.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Netlify Functions](https://docs.netlify.com/functions/overview/) (para evitar problemas de CORS)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## ⚙️ Instalación y ejecución
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+```bash
+# 1. Clonar el repositorio
+git clone https://github.com/jrostagno/dev-uala.git
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+
+cd dev-uala
+
+# 2. Instalar dependencias
+npm install
+
+# 3. Crear archivo de entorno
+cp .env.example .env.local
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Archivo `.env.local` (para desarrollo)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```env
+VITE_API_URL=/api/transactions
 ```
-# dev-uala
+
+```bash
+# 4. Ejecutar en desarrollo
+npm run dev
+
+# 5. Ejecutar tests
+npm run test
+
+# 6. Build para producción
+npm run build
+```
+
+---
+
+## 🏗️ Arquitectura utilizada
+
+```
+src/
+├── components/             # Componentes de UI
+│   └── filters/            # Filtros reutilizables (fechas, montos, etc.)
+├── icons/                  # Íconos SVG como componentes
+├── infrastructure/         # Interfaces y mappers
+├── store/                  # Estado global con Zustand
+├── utils/                  # Utilidades generales (formateo, etc.)
+├── test/                   # Tests unitarios con Vitest
+└── App.tsx                 # Punto de entrada principal
+```
+
+- **Zustand** se usa para centralizar el estado de los filtros y datos cargados.
+- **TanStack Query** podría incorporarse fácilmente para manejo de caché y data fetching.
+- **Radix UI** proporciona componentes accesibles y sin estilos para personalizar.
+- **Netlify Functions** se usan como proxy en producción para evitar CORS al acceder a la API de S3.
+
+---
+
+## 💡 Decisiones técnicas
+
+- **Vite + React + TypeScript** por su rapidez de desarrollo y DX moderna.
+- **Zustand** por ser más liviano y simple que Redux, ideal para este caso.
+- **Vitest** por su integración perfecta con Vite.
+- **Proxy local en **`` para evitar errores de CORS en desarrollo.
+- **Netlify Functions** como proxy backend para evitar CORS en producción.
+
+---
+
+## 🌱 Posibles mejoras a futuro
+
+- ✅ **Internacionalización (i18n)** para formatos de fecha/moneda.
+- ✅ **Persistencia del estado de filtros** en LocalStorage.
+- ✅ **Agregar paginación o scroll infinito**.
+- ✅ **Testing más exhaustivo con mocks de interacciones complejas**.
+- ✅ **Reemplazo de fetch con TanStack Query** para caching y retries.
+- ✅ **Dark mode** con toggle global.
+- ✅ **CI/CD con GitHub Actions para correr tests antes del deploy.**
+
+---
+
+## 🚀 Deploy
+
+Este proyecto está desplegado en [Netlify](https://www.netlify.com/).
+
+> URL de producción: [https://uala-cobros.netlify.app/](https://uala-cobros.netlify.app/)
+
+---
+
+## 📄 Licencia
+
+MIT – © [J.Rostagno]
