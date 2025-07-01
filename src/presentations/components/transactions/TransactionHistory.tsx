@@ -12,13 +12,9 @@ import TransactionListItemSkeleton from "./TransactionListItemSkeleton";
 import DownloadDialog from "../download/DownloadDialog";
 
 const TransactionHistory = () => {
-  const { filtered, loading, error, filters } = useTransactionStore();
+  const { filtered, loading } = useTransactionStore();
   const [showFilters, setShowFilters] = useState(false);
   const [showDownloadModal, setShowDownloadModal] = useState(false);
-
-  if (error) return <p>Error al cargar transacciones</p>;
-
-  console.log(filters);
 
   return (
     <div className="flex flex-col flex-1 min-h-0 overflow-hidden">
