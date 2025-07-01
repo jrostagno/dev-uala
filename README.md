@@ -1,7 +1,9 @@
-# Ualá - Historial de Transacciones 💳
+# Ualá - Cobros online 💳
 
-Esta aplicación permite visualizar un historial de transacciones con filtros avanzados por fecha, monto, métodos de pago, tarjetas y cuotas.También da la posibilidad de descargar un PDF con las transacciones seleccionadas por fecha.
-Fue desarrollada como desafío técnico utilizando tecnologías modernas de frontend.
+Esta aplicación permite visualizar un historial de transacciones con filtros avanzados por fecha, monto, métodos de pago, tarjetas y cantidad de cuotas.
+Incluye un resumen con el monto total de cobros diarios, semanales y mensuales correspondientes al mes en curso.
+Además, ofrece la posibilidad de descargar un PDF con las transacciones seleccionadas dentro de un período determinado.
+Fue desarrollada como parte de un desafío técnico, utilizando tecnologías modernas de frontend.
 
 ![Vista previa de la app](public/app.png) ![Vista previa de la app](public/app-filtros.png)
 
@@ -99,7 +101,7 @@ src/
 - ✅ **Testing más exhaustivo con mocks de interacciones complejas**.
 - ✅ **Reemplazo de fetch con TanStack Query** para caching y retries.
 - ✅ **Dark mode** con toggle global.
-- ✅ **CI/CD con GitHub Actions para correr tests antes del deploy.**
+- ✅ **Lista Virtualizada** podria agregarse una Lista virtualizada para mejorar la performance ya que la lista es larga.
 
 ---
 
