@@ -4,7 +4,7 @@ import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import { Dialog,DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import SvgCalendarDowloadIcon from "@/icons/icon-calendar-download";
 import { useTransactionStore } from "@/store/useTransactionStore";
 
@@ -32,7 +32,6 @@ const DownloadDialog = (props: DownloadDialogProps) => {
     });
 
     if (filtered.length === 0) {
-      console.log("ENTRO POR ACA ");
       toast("No hay movimientos en las fechas seleccionadas para descargar");
 
       setShowDownloadModal(false);

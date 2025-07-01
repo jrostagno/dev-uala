@@ -1,17 +1,19 @@
 import { useTransition } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import SvgCloseIcon from "@/icons/icon-close";
 import SvgHomeIcon from "@/icons/icon-home";
 import SvgMetricsIcon from "@/icons/icon-metrics";
 
-import Spinner from "../ui/Loaders/Spinner";
+import NavigationLink from "./NavigatoinLinks";
+import UserInfo from "./UserInfo";
 
 interface LateralDrawerProps {
   setDrawerOpen: (value: boolean) => void;
   drawerOpen: boolean;
 }
+
 const LateralDrawer = (props: LateralDrawerProps) => {
   const { setDrawerOpen, drawerOpen } = props;
 
@@ -26,6 +28,19 @@ const LateralDrawer = (props: LateralDrawerProps) => {
       navigate(path);
     });
   };
+
+  const navLinks = [
+    {
+      icon: <SvgHomeIcon />,
+      label: "Home",
+      path: "/",
+    },
+    {
+      icon: <SvgMetricsIcon />,
+      label: "Métricas",
+      path: "/metricas",
+    },
+  ];
 
   return (
     <div
@@ -46,47 +61,28 @@ const LateralDrawer = (props: LateralDrawerProps) => {
         </button>
       </div>
 
-      <nav className="flex flex-col gap-4 mt-6 space-y-4 text-lg">
-        <div className="flex flex-col items-center justify-center gap-4">
-          <Avatar className="w-14 h-14">
-            <AvatarImage src="https://github.com/shadcn.png" />
-            <AvatarFallback>JD</AvatarFallback>
-          </Avatar>
+      <nav
+        className={`flex flex-col gap-4 mt-6 space-y-4 text-lg ${
+          isPending ? "cursor-wait opacity-70" : ""
+        }`}
+      >
+        <UserInfo />
 
-          <h2 className="text-sm font-normal text-textPrimary">John Doe </h2>
-        </div>
+        {navLinks.map((link) => (
+          <NavigationLink
+            label={link.label}
+            icon={link.icon}
+            onClick={() => handleNavigate(link.path)}
+          />
+        ))}
 
-        <button
-          onClick={() => handleNavigate("/")}
-          className="text-primaryBrand"
+        <Button
+          variant="link"
+          className="fixed flex items-center gap-3 transform -translate-x-1/2 bottom-8 left-1/2"
         >
-          <div className="flex items-center gap-3">
-            <SvgHomeIcon />
-            <h2 className="text-sm font-normal text-textPrimary">Home</h2>
-          </div>
-        </button>
-
-        <button
-          onClick={() => handleNavigate("/metricas")}
-          className="text-primaryBrand"
-        >
-          <div className="flex items-center gap-3">
-            <SvgMetricsIcon className="text-red-300" />
-            <h2 className="text-sm font-normal text-textPrimary">Métricas</h2>
-          </div>
-        </button>
-
-        <div className="fixed flex items-center gap-3 transform -translate-x-1/2 bottom-8 left-1/2 text-primaryBrand">
-          <h2 className="text-sm font-normal text-primaryBrand">
-            Cerrar sesión
-          </h2>
-        </div>
+          Cerrar sesión
+        </Button>
       </nav>
-      {isPending && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center bg-white bg-opacity-70">
-          <Spinner />
-        </div>
-      )}
     </div>
   );
 };

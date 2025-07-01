@@ -1,6 +1,9 @@
 # Ualá - Historial de Transacciones 💳
 
-Esta aplicación permite visualizar un historial de transacciones con filtros avanzados por fecha, monto, métodos de pago, tarjetas y cuotas. Fue desarrollada como desafío técnico utilizando tecnologías modernas de frontend.
+Esta aplicación permite visualizar un historial de transacciones con filtros avanzados por fecha, monto, métodos de pago, tarjetas y cuotas.También da la posibilidad de descargar un PDF con las transacciones seleccionadas por fecha.
+Fue desarrollada como desafío técnico utilizando tecnologías modernas de frontend.
+
+![Vista previa de la app](public/app.png) ![Vista previa de la app](public/app-filtros.png)
 
 ---
 
@@ -82,6 +85,12 @@ src/
 
 ---
 
+## Clean code 💅🏻
+
+- **eslint y prettier** Se configuraron reglas de ESLint para mantener un código limpio y ordenado. Por ejemplo, se agregó una regla que organiza las importaciones de forma lógica cada vez que se guarda el archivo en el editor.
+
+---
+
 ## 🌱 Posibles mejoras a futuro
 
 - ✅ **Internacionalización (i18n)** para formatos de fecha/moneda.
@@ -104,4 +113,4 @@ Este proyecto está desplegado en [Netlify](https://www.netlify.com/).
 
 ## 📄 Licencia
 
-MIT – © [J.Rostagno]
+MIT – © J.Rostagno

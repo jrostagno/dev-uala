@@ -30,9 +30,13 @@ export default tseslint.config([
     },
 
     rules: {
-      // ✅ Activás las reglas que ordenan imports/exports
       "simple-import-sort/imports": "warn",
       "simple-import-sort/exports": "warn",
+      "no-console": ["warn", { allow: ["warn", "error"] }],
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        { argsIgnorePattern: "^_" },
+      ],
     },
   },
 ]);

@@ -11,7 +11,6 @@ import SvgCloseIcon from "@/icons/icon-close";
 import SvgQuotasIcon from "@/icons/icon-quotas";
 import { useTransactionStore } from "@/store/useTransactionStore";
 
-// Opciones de cuotas disponibles
 const INSTALLMENT_OPTIONS = [1, 2, 3, 6, 12];
 
 const InstallmentsFilter = () => {

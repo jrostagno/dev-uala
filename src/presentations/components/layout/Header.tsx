@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import SvgHamburgerMenu from "../../../icons/icon-menu-hamburger";
 import SvgLogoUala from "../../../icons/uala-logo";
 
@@ -13,8 +15,10 @@ const Header = (props: HeaderProps) => {
         <SvgHamburgerMenu />
       </button>
 
-      <div className="absolute left-1/2 transform -translate-x-1/2">
-        <SvgLogoUala />
+      <div className="absolute transform -translate-x-1/2 left-1/2">
+        <Link to="/">
+          <SvgLogoUala />
+        </Link>
       </div>
 
       <div className="w-7" />
@@ -29,10 +33,8 @@ const Header = (props: HeaderProps) => {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          {/* Fondo blanco sin borde */}
           <path d="M32 32V0H0C17.6731 0 32 14.3269 32 32Z" fill="white" />
 
-          {/* Solo curva con borde gris */}
           <path
             d="M32 32C32 14.3269 17.6731 0 0 0"
             fill="none"

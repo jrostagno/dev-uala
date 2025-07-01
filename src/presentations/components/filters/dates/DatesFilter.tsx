@@ -21,8 +21,6 @@ const DatesFilter = () => {
     to: filters.toDate ? new Date(filters.toDate) : undefined,
   }));
 
-  //  const isActive = Boolean(filters.fromDate || filters.toDate);
-
   const [isOpen, setIsOpen] = useState(
     Boolean(filters.fromDate || filters.toDate)
   );

@@ -1,10 +1,3 @@
-import {
-  differenceInCalendarDays,
-  isAfter,
-  startOfDay,
-  startOfMonth,
-  startOfWeek,
-} from "date-fns";
 import { useMemo, useState } from "react";
 
 import { useTransactionStore } from "@/store/useTransactionStore";
@@ -15,25 +8,10 @@ import HeaderTitle from "../ui/text/HeaderTitle";
 import MainNumber from "./MainNumber";
 import MainNumberSkeleton from "./MainNumberSkeleton";
 import PeriodSelector from "./PeriodSelector";
+import { matchByPeriod } from "./utils";
 
 export type PeriodType = "DAILY" | "WEEKLY" | "MONTHLY";
 
-const matchByPeriod = (txDate: Date, period: PeriodType): boolean => {
-  const now = new Date();
-
-  switch (period) {
-    case "DAILY":
-      return (
-        differenceInCalendarDays(startOfDay(now), startOfDay(txDate)) === 0
-      );
-    case "WEEKLY":
-      return isAfter(txDate, startOfWeek(now, { weekStartsOn: 1 }));
-    case "MONTHLY":
-      return isAfter(txDate, startOfMonth(now));
-    default:
-      return false;
-  }
-};
 const PaymentsBanner = () => {
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>("WEEKLY");
 
