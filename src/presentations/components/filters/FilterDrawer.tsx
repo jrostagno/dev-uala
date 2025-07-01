@@ -1,13 +1,14 @@
-import SvgChevronLeftIcon from "@/icons/icon-chevron-left";
-import HeaderTitle from "../ui/text/HeaderTitle";
-import DatesFilter from "./dates/DatesFilter";
-import CreditCardFilter from "./credit-cards/CreditCardFilter";
-import InstallmentsFilter from "./installments/InstallmentsFilter";
-import AmountFilter from "./amount/AmountFilter";
-import PaymentMethodsFilter from "./payment-methods/PaymentMethodsFilter";
-import { useTransactionStore } from "@/store/useTransactionStore";
 import { Button } from "@/components/ui/button";
 import { useDrawerAnimation } from "@/hooks/useDrawerAnimation";
+import SvgChevronLeftIcon from "@/icons/icon-chevron-left";
+import { useTransactionStore } from "@/store/useTransactionStore";
+
+import HeaderTitle from "../ui/text/HeaderTitle";
+import AmountFilter from "./amount/AmountFilter";
+import CreditCardFilter from "./credit-cards/CreditCardFilter";
+import DatesFilter from "./dates/DatesFilter";
+import InstallmentsFilter from "./installments/InstallmentsFilter";
+import PaymentMethodsFilter from "./payment-methods/PaymentMethodsFilter";
 
 interface FilterDrawerProps {
   setShowFilters: (value: boolean) => void;

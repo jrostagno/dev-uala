@@ -1,4 +1,5 @@
 import type { Dispatch, SetStateAction } from "react";
+
 import type { PeriodType } from "./PaymentsBanner";
 
 interface PeriodSelectorProps {

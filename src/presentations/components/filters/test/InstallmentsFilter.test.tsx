@@ -1,12 +1,11 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { fireEvent,render, screen } from "@testing-library/react";
+import { beforeEach,describe, expect, it, vi } from "vitest";
 import { type Mock } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
 
 import {
-  useTransactionStore,
   type TransactionState,
+  useTransactionStore,
 } from "../../../../store/useTransactionStore";
-
 import InstallmentsFilter from "../installments/InstallmentsFilter";
 
 vi.mock("@/store/useTransactionStore", () => ({

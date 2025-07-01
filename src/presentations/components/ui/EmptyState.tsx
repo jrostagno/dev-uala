@@ -1,5 +1,6 @@
-import SvgSearchIcon from "@/icons/icon-search";
 import clsx from "clsx";
+
+import SvgSearchIcon from "@/icons/icon-search";
 
 interface EmptyStateProps {
   className?: string;

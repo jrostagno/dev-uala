@@ -1,5 +1,9 @@
-import { Calendar } from "@/components/ui/calendar";
 import { es } from "date-fns/locale";
+import { useEffect, useState } from "react";
+import type { DateRange } from "react-day-picker";
+
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import {
   Collapsible,
   CollapsibleContent,
@@ -8,9 +12,6 @@ import {
 import { Switch } from "@/components/ui/switch";
 import SvgCalendarIcon from "@/icons/icon-calendar";
 import { useTransactionStore } from "@/store/useTransactionStore";
-import { useEffect, useState } from "react";
-import type { DateRange } from "react-day-picker";
-import { Button } from "@/components/ui/button";
 
 const DatesFilter = () => {
   const { setFilters, filters } = useTransactionStore();

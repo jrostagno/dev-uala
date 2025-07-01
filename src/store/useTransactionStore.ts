@@ -1,10 +1,11 @@
+import { create } from "zustand";
+
 import { fetchTransactions } from "@/actions/getTransactions";
 import type {
   CardEnum,
   PaymentMethod,
   Transaction,
 } from "@/infrastructure/interfaces/paymentsApi";
-import { create } from "zustand";
 
 interface Filters {
   cards?: CardEnum[];

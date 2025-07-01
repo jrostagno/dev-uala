@@ -1,10 +1,11 @@
+import { useTransition } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import SvgCloseIcon from "@/icons/icon-close";
 import SvgHomeIcon from "@/icons/icon-home";
 import SvgMetricsIcon from "@/icons/icon-metrics";
-import { useTransition } from "react";
 
-import { useNavigate } from "react-router-dom";
 import Spinner from "../ui/Loaders/Spinner";
 
 interface LateralDrawerProps {

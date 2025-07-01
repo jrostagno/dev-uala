@@ -1,8 +1,9 @@
+import type { PaymentMethod } from "@/infrastructure/interfaces/paymentsApi";
+import { METHOD_LABELS } from "@/infrastructure/mappers/paymentsMappers";
 import { DateToDay } from "@/utils/dateUtils";
+
 import SvgTransactionIcon from "../../../icons/icon-transaction";
 import { formatPrice } from "../../../utils/formatPrice";
-import { METHOD_LABELS } from "@/infrastructure/mappers/paymentsMappers";
-import type { PaymentMethod } from "@/infrastructure/interfaces/paymentsApi";
 
 interface TransactionListItemProps {
   amount: number;

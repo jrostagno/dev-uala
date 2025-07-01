@@ -1,13 +1,15 @@
+import { useEffect, useState } from "react";
+
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { Slider } from "@/components/ui/slider";
-import SvgAmountIcon from "@/icons/icon-amount";
 import { Switch } from "@/components/ui/switch";
-import { useEffect, useState } from "react";
+import SvgAmountIcon from "@/icons/icon-amount";
 import { useTransactionStore } from "@/store/useTransactionStore";
+
 import AmountBox from "./AmountBox";
 const MIN = 0;
 const MAX = 2000;

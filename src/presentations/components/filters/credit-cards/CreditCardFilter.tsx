@@ -1,17 +1,17 @@
+import { useEffect, useState } from "react";
+
 import { Button } from "@/components/ui/button";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import SvgCreditCardIcon from "@/icons/icon-credit-card";
 import { Switch } from "@/components/ui/switch";
-
 import SvgCloseIcon from "@/icons/icon-close";
-import { useTransactionStore } from "@/store/useTransactionStore";
+import SvgCreditCardIcon from "@/icons/icon-credit-card";
 import type { CardEnum } from "@/infrastructure/interfaces/paymentsApi";
 import { CARDS_LABELS } from "@/infrastructure/mappers/paymentsMappers";
-import { useEffect, useState } from "react";
+import { useTransactionStore } from "@/store/useTransactionStore";
 
 const CARDS_VALUES = Object.keys(CARDS_LABELS) as CardEnum[];
 const CreditCardFilter = () => {

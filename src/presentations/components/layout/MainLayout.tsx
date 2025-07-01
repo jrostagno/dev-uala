@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
+
+import { Toaster } from "@/components/ui/sonner";
+
 import Header from "./Header";
 import LateralDrawer from "./LateralDrawer";
-import { Toaster } from "@/components/ui/sonner";
 
 const MobileLayout = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);

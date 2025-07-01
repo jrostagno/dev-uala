@@ -1,19 +1,20 @@
-import { useMemo, useState } from "react";
 import {
   differenceInCalendarDays,
-  startOfDay,
-  startOfWeek,
-  startOfMonth,
   isAfter,
+  startOfDay,
+  startOfMonth,
+  startOfWeek,
 } from "date-fns";
-import SvgMetricasIcon from "../../../icons/icon-metricas";
-import PeriodSelector from "./PeriodSelector";
+import { useMemo, useState } from "react";
 
-import MainNumber from "./MainNumber";
-import HeaderTitle from "../ui/text/HeaderTitle";
-import LinkWithIcon from "../ui/links/LinkWithIcon";
 import { useTransactionStore } from "@/store/useTransactionStore";
+
+import SvgMetricasIcon from "../../../icons/icon-metricas";
+import LinkWithIcon from "../ui/links/LinkWithIcon";
+import HeaderTitle from "../ui/text/HeaderTitle";
+import MainNumber from "./MainNumber";
 import MainNumberSkeleton from "./MainNumberSkeleton";
+import PeriodSelector from "./PeriodSelector";
 
 export type PeriodType = "DAILY" | "WEEKLY" | "MONTHLY";
 

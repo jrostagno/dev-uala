@@ -1,6 +1,8 @@
-import SvgPlusIcon from "@/icons/icon-plus";
-import { formatPrice } from "../../../utils/formatPrice";
 import clsx from "clsx";
+
+import SvgPlusIcon from "@/icons/icon-plus";
+
+import { formatPrice } from "../../../utils/formatPrice";
 
 interface MainNumberProps {
   value?: number;

@@ -1,14 +1,15 @@
+import { useEffect, useState } from "react";
+
 import { Button } from "@/components/ui/button";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import SvgQuotasIcon from "@/icons/icon-quotas";
 import { Switch } from "@/components/ui/switch";
 import SvgCloseIcon from "@/icons/icon-close";
+import SvgQuotasIcon from "@/icons/icon-quotas";
 import { useTransactionStore } from "@/store/useTransactionStore";
-import { useEffect, useState } from "react";
 
 // Opciones de cuotas disponibles
 const INSTALLMENT_OPTIONS = [1, 2, 3, 6, 12];

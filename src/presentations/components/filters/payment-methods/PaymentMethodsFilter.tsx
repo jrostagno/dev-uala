@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import { Button } from "@/components/ui/button";
 import {
   Collapsible,
@@ -10,7 +12,6 @@ import SvgPaymentMethodIcon from "@/icons/icon-paymentMethod";
 import type { PaymentMethod } from "@/infrastructure/interfaces/paymentsApi";
 import { METHOD_LABELS } from "@/infrastructure/mappers/paymentsMappers";
 import { useTransactionStore } from "@/store/useTransactionStore";
-import { useEffect, useState } from "react";
 
 const METHOD_VALUES = Object.keys(METHOD_LABELS) as PaymentMethod[];
 const PaymentMethodsFilter = () => {

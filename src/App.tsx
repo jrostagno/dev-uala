@@ -1,8 +1,9 @@
 import "./App.css";
-import MobileLayout from "./presentations/components/layout/MainLayout";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-// App.tsx
 
+import { BrowserRouter, Route,Routes } from "react-router-dom";
+
+import MobileLayout from "./presentations/components/layout/MainLayout";
+// App.tsx
 import HomeScreen from "./presentations/screens/HomeScreen";
 import MetricsScreen from "./presentations/screens/MetricsScreen";
 

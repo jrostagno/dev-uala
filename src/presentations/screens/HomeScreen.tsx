@@ -1,8 +1,9 @@
-import { useTransactionStore } from "@/store/useTransactionStore";
-import PaymentsBanner from "../components/payments/PaymentsBanner";
-import TransactionHistory from "../components/transactions/TransactionHistory";
 import { useEffect } from "react";
 
+import { useTransactionStore } from "@/store/useTransactionStore";
+
+import PaymentsBanner from "../components/payments/PaymentsBanner";
+import TransactionHistory from "../components/transactions/TransactionHistory";
 import ErrorMessage from "../components/ui/ErrorMessage";
 
 const HomeScreen = () => {
