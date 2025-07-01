@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import type { AnchorHTMLAttributes, JSX, ReactNode } from "react";
+import { Link } from "react-router-dom";
 
 interface LinkWithIconProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   children: ReactNode;
@@ -20,11 +21,11 @@ const LinkWithIcon = ({
     >
       {icon}
 
-      <a href={href} {...rest}>
+      <Link to={href} {...rest}>
         <span className="font-sans text-sm font-normal text-primaryBrand">
           {children}
         </span>
-      </a>
+      </Link>
     </div>
   );
 };

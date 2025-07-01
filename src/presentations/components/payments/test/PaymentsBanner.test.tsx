@@ -1,4 +1,5 @@
 import { describe, it, expect } from "vitest";
+import { MemoryRouter } from "react-router-dom";
 //import type { Transaction } from "@/infrastructure/interfaces/paymentsApi";
 import { vi } from "vitest";
 import { type Mock } from "vitest";
@@ -52,7 +53,11 @@ describe("PaymentsBanner", () => {
 
     mockUseTransactionStore.mockReturnValue(mockState);
 
-    render(<PaymentsBanner />);
+    render(
+      <MemoryRouter>
+        <PaymentsBanner />
+      </MemoryRouter>
+    );
     // @ts-expect-error jest-dom matcher not typed in TS
     expect(screen.getByText("Tus cobros")).toBeInTheDocument();
     // @ts-expect-error jest-dom matcher not typed in TS
@@ -74,7 +79,11 @@ describe("PaymentsBanner", () => {
 
     mockUseTransactionStore.mockReturnValue(mockState);
 
-    render(<PaymentsBanner />);
+    render(
+      <MemoryRouter>
+        <PaymentsBanner />
+      </MemoryRouter>
+    );
     // @ts-expect-error jest-dom matcher not typed in TS
     expect(screen.getByTestId("main-number-skeleton")).toBeInTheDocument();
   });
