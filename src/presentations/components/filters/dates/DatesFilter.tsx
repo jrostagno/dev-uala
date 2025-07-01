@@ -63,7 +63,7 @@ const DatesFilter = () => {
           />
         </CollapsibleTrigger>
       </div>
-      <CollapsibleContent className="py-4">
+      <CollapsibleContent className="py-1">
         <div className="relative flex flex-col items-center justify-center py-2 m-auto max-w-[280px] mt-0 mb-0 bg-white rounded-md">
           <Calendar
             mode="range"
@@ -76,7 +76,7 @@ const DatesFilter = () => {
 
           <div className="self-end mr-[30px]">
             <Button
-              className="mt-3 mb-3"
+              className="mt-2 mb-3"
               data-testid="borrar-btn"
               disabled={!date?.from && !date?.to}
               onClick={() => {

@@ -5,7 +5,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import {
   useTransactionStore,
   type TransactionState,
-} from "@/store/useTransactionStore";
+} from "../../../../store/useTransactionStore";
 
 import InstallmentsFilter from "../installments/InstallmentsFilter";
 
@@ -27,7 +27,9 @@ describe("InstallmentsFilter", () => {
     } as unknown as TransactionState);
 
     render(<InstallmentsFilter />);
+    // @ts-expect-error jest-dom matcher not typed in TS
     expect(screen.getByText("Cuotas")).toBeInTheDocument();
+    // @ts-expect-error jest-dom matcher not typed in TS
     expect(screen.getByRole("switch")).not.toBeChecked();
   });
 
@@ -38,7 +40,9 @@ describe("InstallmentsFilter", () => {
     } as unknown as TransactionState);
 
     render(<InstallmentsFilter />);
+    // @ts-expect-error jest-dom matcher not typed in TS
     expect(screen.getByText("Todas")).toBeInTheDocument();
+    // @ts-expect-error jest-dom matcher not typed in TS
     expect(screen.getByTestId("1")).toBeInTheDocument();
   });
 
@@ -51,7 +55,7 @@ describe("InstallmentsFilter", () => {
     render(<InstallmentsFilter />);
     const switchEl = screen.getByRole("switch");
     fireEvent.click(switchEl);
-
+    // @ts-expect-error jest-dom matcher not typed in TS
     expect(screen.getByText("Todas")).toBeInTheDocument();
   });
 

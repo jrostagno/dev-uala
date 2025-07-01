@@ -4,11 +4,11 @@ import { type Mock } from "vitest";
 import {
   useTransactionStore,
   type TransactionState,
-} from "@/store/useTransactionStore";
+} from "../../../../store/useTransactionStore";
 import AmountFilter from "../amount/AmountFilter";
 
 // Mock de Zustand
-vi.mock("@/store/useTransactionStore", () => ({
+vi.mock("../../../../store/useTransactionStore", () => ({
   useTransactionStore: vi.fn(),
 }));
 
@@ -26,6 +26,7 @@ describe("AmountFilter", () => {
     } as unknown as TransactionState);
 
     render(<AmountFilter />);
+    // @ts-expect-error jest-dom matcher not typed in TS
     expect(screen.getByText("Monto")).toBeInTheDocument();
   });
 
@@ -38,7 +39,7 @@ describe("AmountFilter", () => {
     render(<AmountFilter />);
     const toggle = screen.getByRole("switch");
     fireEvent.click(toggle);
-
+    // @ts-expect-error jest-dom matcher not typed in TS
     expect(screen.getByText("Monto mínimo")).toBeInTheDocument();
   });
 });

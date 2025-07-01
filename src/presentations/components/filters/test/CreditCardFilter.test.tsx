@@ -5,7 +5,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import {
   useTransactionStore,
   type TransactionState,
-} from "@/store/useTransactionStore";
+} from "../../../../store/useTransactionStore";
 import CreditCardFilter from "../credit-cards/CreditCardFilter";
 
 vi.mock("@/store/useTransactionStore", () => ({
@@ -26,7 +26,9 @@ describe("CreditCardFilter", () => {
     } as unknown as TransactionState);
 
     render(<CreditCardFilter />);
+    // @ts-expect-error jest-dom matcher not typed in TS
     expect(screen.getByText("Tarjeta")).toBeInTheDocument();
+    // @ts-expect-error jest-dom matcher not typed in TS
     expect(screen.getByRole("switch")).not.toBeChecked();
   });
 
@@ -37,7 +39,9 @@ describe("CreditCardFilter", () => {
     } as unknown as TransactionState);
 
     render(<CreditCardFilter />);
+    // @ts-expect-error jest-dom matcher not typed in TS
     expect(screen.getByText("Todas")).toBeInTheDocument();
+    // @ts-expect-error jest-dom matcher not typed in TS
     expect(screen.getByTestId("visa")).toBeInTheDocument();
   });
 
@@ -50,7 +54,7 @@ describe("CreditCardFilter", () => {
     render(<CreditCardFilter />);
     const switchEl = screen.getByRole("switch");
     fireEvent.click(switchEl);
-
+    // @ts-expect-error jest-dom matcher not typed in TS
     expect(screen.getByText("Todas")).toBeInTheDocument();
   });
 

@@ -7,9 +7,9 @@ import PaymentsBanner from "../PaymentsBanner";
 import {
   useTransactionStore,
   type TransactionState,
-} from "@/store/useTransactionStore";
+} from "../../../../store/useTransactionStore";
 
-vi.mock("@/store/useTransactionStore", () => ({
+vi.mock("../../../../store/useTransactionStore", () => ({
   useTransactionStore: vi.fn(),
 }));
 
@@ -53,7 +53,9 @@ describe("PaymentsBanner", () => {
     mockUseTransactionStore.mockReturnValue(mockState);
 
     render(<PaymentsBanner />);
+    // @ts-expect-error jest-dom matcher not typed in TS
     expect(screen.getByText("Tus cobros")).toBeInTheDocument();
+    // @ts-expect-error jest-dom matcher not typed in TS
     expect(screen.getByText("ver metricas")).toBeInTheDocument();
   });
 
@@ -73,6 +75,7 @@ describe("PaymentsBanner", () => {
     mockUseTransactionStore.mockReturnValue(mockState);
 
     render(<PaymentsBanner />);
+    // @ts-expect-error jest-dom matcher not typed in TS
     expect(screen.getByTestId("main-number-skeleton")).toBeInTheDocument();
   });
 

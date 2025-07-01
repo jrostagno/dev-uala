@@ -51,7 +51,7 @@ const TransactionHistory = () => {
         </div>
       )}
 
-      {filtered.length === 0 && <EmptyState />}
+      {filtered.length === 0 && <EmptyState className="mt-4" />}
       <ul className="flex-1 pb-12 overflow-y-auto scrollbar-hide overscroll-none">
         {filtered &&
           filtered.length > 0 &&

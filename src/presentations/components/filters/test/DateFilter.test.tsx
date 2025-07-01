@@ -4,7 +4,7 @@ import { type Mock } from "vitest";
 import {
   type TransactionState,
   useTransactionStore,
-} from "@/store/useTransactionStore";
+} from "../../../../store/useTransactionStore";
 import DatesFilter from "../dates/DatesFilter";
 
 vi.mock("@/store/useTransactionStore", () => ({
@@ -25,6 +25,7 @@ describe("DatesFilter", () => {
     } as unknown as TransactionState);
 
     render(<DatesFilter />);
+    // @ts-expect-error jest-dom matcher not typed in TS
     expect(screen.queryByRole("grid")).not.toBeInTheDocument();
   });
 
@@ -36,6 +37,7 @@ describe("DatesFilter", () => {
 
     render(<DatesFilter />);
     fireEvent.click(screen.getByRole("switch"));
+    // @ts-expect-error jest-dom matcher not typed in TS
     expect(screen.getByRole("grid")).toBeInTheDocument();
   });
 

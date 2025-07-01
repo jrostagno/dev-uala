@@ -46,7 +46,7 @@ const FilterDrawer = ({ setShowFilters }: FilterDrawerProps) => {
 
       {/* Contenido */}
       <div className="flex-1 px-4 py-2 overflow-y-auto scrollbar-hide">
-        <div className="flex items-center justify-between mt-4">
+        <div className="flex items-center justify-between ">
           <HeaderTitle>Todos los filtros</HeaderTitle>
           <Button
             variant="ghost"

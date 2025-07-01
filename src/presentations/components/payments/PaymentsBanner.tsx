@@ -55,7 +55,11 @@ const PaymentsBanner = () => {
         setSelectedPeriod={setSelectedPeriod}
       />
 
-      {loading ? <MainNumberSkeleton /> : <MainNumber value={total} />}
+      {loading ? (
+        <MainNumberSkeleton />
+      ) : (
+        <MainNumber className="mt-3" value={total} />
+      )}
 
       <LinkWithIcon icon={<SvgMetricasIcon />} href="/metricas">
         ver metricas

@@ -5,7 +5,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import {
   useTransactionStore,
   type TransactionState,
-} from "@/store/useTransactionStore";
+} from "../../../../store/useTransactionStore";
 import PaymentMethodsFilter from "../payment-methods/PaymentMethodsFilter";
 
 vi.mock("@/store/useTransactionStore", () => ({
@@ -26,7 +26,9 @@ describe("PaymentMethodsFilter", () => {
     } as unknown as TransactionState);
 
     render(<PaymentMethodsFilter />);
+    // @ts-expect-error jest-dom matcher not typed in TS
     expect(screen.getByText("Métodos de cobro")).toBeInTheDocument();
+    // @ts-expect-error jest-dom matcher not typed in TS
     expect(screen.getByRole("switch")).not.toBeChecked();
   });
 
@@ -36,8 +38,9 @@ describe("PaymentMethodsFilter", () => {
       setFilters: vi.fn(),
     } as unknown as TransactionState);
 
-    render(<PaymentMethodsFilter />);
+    render(<PaymentMethodsFilter />); // @ts-expect-error jest-dom matcher not typed in TS
     expect(screen.getByText("Todas")).toBeInTheDocument();
+    // @ts-expect-error jest-dom matcher not typed in TS
     expect(screen.getByTestId("link")).toBeInTheDocument();
   });
 
@@ -50,7 +53,7 @@ describe("PaymentMethodsFilter", () => {
     render(<PaymentMethodsFilter />);
     const switchEl = screen.getByRole("switch");
     fireEvent.click(switchEl);
-
+    // @ts-expect-error jest-dom matcher not typed in TS
     expect(screen.getByText("Todas")).toBeInTheDocument();
   });
 

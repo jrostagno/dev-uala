@@ -75,7 +75,7 @@ const AmountFilter = () => {
             <div
               className={`absolute px-2 py-1 text-xs font-thin ${
                 range[1] - range[0] < 300 ? "hidden" : ""
-              } transform -translate-x-1/2 bg-white -top-4 text-primaryBrand`}
+              } transform -translate-x-1/2 bg-gray-extraLight -top-4 text-primaryBrand`}
               style={{ left: `calc(${getPercentage(range[0])}% + 10px)` }}
             >
               ${range[0]}
@@ -83,7 +83,7 @@ const AmountFilter = () => {
 
             {/* Label flotante del segundo thumb */}
             <div
-              className="absolute px-2 py-1 text-xs font-thin transform -translate-x-1/2 bg-white -top-4 text-primaryBrand"
+              className="absolute px-2 py-1 text-xs font-thin transform -translate-x-1/2 bg-gray-extraLight -top-4 text-primaryBrand"
               style={{ left: `calc(${getPercentage(range[1])}% - 10px)` }}
             >
               ${range[1]}

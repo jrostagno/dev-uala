@@ -1,10 +1,18 @@
 import SvgSearchIcon from "@/icons/icon-search";
+import clsx from "clsx";
 
-const EmptyState = () => {
+interface EmptyStateProps {
+  className?: string;
+}
+const EmptyState = (props: EmptyStateProps) => {
+  const { className } = props;
   return (
     <div
       data-testid="empty-state"
-      className="flex flex-col items-center justify-center gap-3"
+      className={clsx(
+        "flex flex-col items-center justify-center gap-3",
+        className
+      )}
     >
       <SvgSearchIcon />
       <h3 className="text-sm text-center text-textNeutral">

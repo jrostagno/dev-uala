@@ -46,8 +46,8 @@ const LateralDrawer = (props: LateralDrawerProps) => {
       </div>
 
       <nav className="flex flex-col gap-4 mt-6 space-y-4 text-lg">
-        <div className="flex items-center gap-4">
-          <Avatar>
+        <div className="flex flex-col items-center justify-center gap-4">
+          <Avatar className="w-14 h-14">
             <AvatarImage src="https://github.com/shadcn.png" />
             <AvatarFallback>JD</AvatarFallback>
           </Avatar>

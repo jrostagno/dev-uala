@@ -6,10 +6,10 @@ import TransactionHistory from "../TransactionHistory";
 import {
   useTransactionStore,
   type TransactionState,
-} from "@/store/useTransactionStore";
+} from "../../../../store/useTransactionStore";
 
 // Mock del store
-vi.mock("@/store/useTransactionStore", () => ({
+vi.mock("../../../../store/useTransactionStore", () => ({
   useTransactionStore: vi.fn(),
 }));
 
@@ -26,9 +26,10 @@ describe("TransactionHistory", () => {
       error: null,
       filtered: [],
       filters: {},
-    } as TransactionState);
+    } as Partial<TransactionState>);
 
     render(<TransactionHistory />);
+    // @ts-expect-error jest-dom matcher not typed in TS
     expect(screen.getByText("Historial de transacciones")).toBeInTheDocument();
   });
 
@@ -38,7 +39,7 @@ describe("TransactionHistory", () => {
       error: null,
       filtered: [],
       filters: {},
-    } as TransactionState);
+    } as Partial<TransactionState>);
 
     render(<TransactionHistory />);
     expect(screen.getAllByTestId("skeleton-item")).toHaveLength(10);
@@ -71,10 +72,11 @@ describe("TransactionHistory", () => {
       error: null,
       filtered: [],
       filters: {},
-    } as TransactionState);
+    } as Partial<TransactionState>);
 
     render(<TransactionHistory />);
-    expect(screen.getByTestId("empty-state")).toBeInTheDocument(); // Ajustá según el texto de EmptyState
+    // @ts-expect-error jest-dom matcher not typed in TS
+    expect(screen.getByTestId("empty-state")).toBeInTheDocument();
   });
 
   //   it("muestra mensaje de error si falla", () => {
@@ -97,13 +99,14 @@ describe("TransactionHistory", () => {
       error: null,
       filtered: [],
       filters: {},
-    } as TransactionState);
+    } as Partial<TransactionState>);
 
     render(<TransactionHistory />);
 
     const filterIcon = screen.getByTestId("filter-icon");
 
     fireEvent.click(filterIcon);
+    // @ts-expect-error jest-dom matcher not typed in TS
     expect(screen.getByText("Filtros")).toBeInTheDocument(); // Ajustar según título en FilterDrawer
   });
 
@@ -113,13 +116,15 @@ describe("TransactionHistory", () => {
       error: null,
       filtered: [],
       filters: {},
-    } as TransactionState);
+    } as Partial<TransactionState>);
 
     render(<TransactionHistory />);
     const downloadIcon = screen.getByTestId("download-icon");
     fireEvent.click(downloadIcon);
+
     expect(
       screen.getByText("Elegí las fechas que querés descargar")
-    ).toBeInTheDocument(); // Ajustar al texto real
+      // @ts-expect-error jest-dom matcher not typed in TS
+    ).toBeInTheDocument();
   });
 });
