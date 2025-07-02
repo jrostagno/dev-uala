@@ -66,6 +66,12 @@ export const useTransactionStore = create<TransactionState>((set, get) => ({
       toDate,
     } = filters;
 
+    // Convertir a Date y ajustar toDate al final del día
+    const fromDateStart = fromDate
+      ? new Date(fromDate + "T00:00:00")
+      : undefined;
+    const toDateEnd = toDate ? new Date(toDate + "T23:59:59.999") : undefined;
+
     const filtered = transactions.filter((tx) => {
       const matchCard = !cards || cards.length === 0 || cards.includes(tx.card);
       const matchMethod =
@@ -79,9 +85,12 @@ export const useTransactionStore = create<TransactionState>((set, get) => ({
       const matchAmount =
         (!minAmount || tx.amount >= minAmount) &&
         (!maxAmount || tx.amount <= maxAmount);
+
+      const txDate = new Date(tx.createdAt);
+
       const matchDate =
-        (!fromDate || new Date(tx.createdAt) >= new Date(fromDate)) &&
-        (!toDate || new Date(tx.createdAt) <= new Date(toDate));
+        (!fromDateStart || txDate >= fromDateStart) &&
+        (!toDateEnd || txDate <= toDateEnd);
 
       return (
         matchCard &&
