@@ -1,5 +1,6 @@
 import {
-  differenceInCalendarDays,
+  endOfDay,
+  isWithinInterval,
   startOfDay,
   startOfMonth,
   startOfWeek,
@@ -7,18 +8,32 @@ import {
 
 import { PeriodType } from "./PaymentsBanner";
 
-export const matchByPeriod = (txDate: Date, period: PeriodType): boolean => {
+export const matchByPeriod = (
+  txDate: Date | string,
+  period: PeriodType
+): boolean => {
+  const date = new Date(txDate); // Asegura que siempre sea un Date válido
   const now = new Date();
 
   switch (period) {
-    case "DAILY":
-      return (
-        differenceInCalendarDays(startOfDay(now), startOfDay(txDate)) === 0
-      );
-    case "WEEKLY":
-      return txDate >= startOfWeek(now, { weekStartsOn: 1 });
-    case "MONTHLY":
-      return txDate >= startOfMonth(now);
+    case "DAILY": {
+      const start = startOfDay(now);
+      const end = endOfDay(now);
+      return isWithinInterval(date, { start, end });
+    }
+
+    case "WEEKLY": {
+      const start = startOfWeek(now, { weekStartsOn: 1 }); // Lunes
+      const end = endOfDay(now);
+      return isWithinInterval(date, { start, end });
+    }
+
+    case "MONTHLY": {
+      const start = startOfMonth(now);
+      const end = endOfDay(now);
+      return isWithinInterval(date, { start, end });
+    }
+
     default:
       return false;
   }
