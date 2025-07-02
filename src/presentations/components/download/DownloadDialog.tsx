@@ -24,22 +24,21 @@ const DownloadDialog = (props: DownloadDialogProps) => {
   const handleDownload = async () => {
     if (!dateRange?.from || !dateRange?.to) return;
 
+    const from = new Date(dateRange.from);
+    const to = new Date(new Date(dateRange.to).setHours(23, 59, 59, 999));
+
     const filtered = transactions.filter((tx) => {
       const date = new Date(tx.createdAt);
-      return (
-        date >= new Date(dateRange.from!) && date <= new Date(dateRange.to!)
-      );
+      return date >= from && date <= to;
     });
 
     if (filtered.length === 0) {
       toast("No hay movimientos en las fechas seleccionadas para descargar");
-
       setShowDownloadModal(false);
-
       return;
     }
 
-    await generateAndDownloadPDF(filtered, dateRange.from, dateRange.to);
+    await generateAndDownloadPDF(filtered, from, to);
     setShowDownloadModal(false);
   };
 
